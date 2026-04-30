@@ -3,5 +3,11 @@
   "name": "listiq",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "@tanstack/react-start/server-entry",
+  "main": "dist/server/index.js",
+  "vars": {
+    "VITE_SUPABASE_URL": "https://hypfgqqfcaxfyvolqqga.supabase.co",
+    "VITE_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_J3sXH8Yasd2a2nUu7r9qfg_MJyNPDrn",
+    "SUPABASE_URL": "https://hypfgqqfcaxfyvolqqga.supabase.co",
+    "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_J3sXH8Yasd2a2nUu7r9qfg_MJyNPDrn"
+  }
 }

@@ -3,14 +3,28 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
 function createSupabaseClient() {
-  // Use import.meta.env for client-side (Vite build-time replacement)
-  // Fall back to process.env for SSR (server-side rendering)
-  const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
-  const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY;
+  const getEnv = (key: string) => {
+    // 1. Build-time (Vite)
+    if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env[key]) return import.meta.env[key];
+    // 2. Global process (Node/SSR)
+    if (typeof process !== 'undefined' && process.env && process.env[key]) return process.env[key];
+    // 3. Cloudflare Global fallback
+    if (typeof globalThis !== 'undefined' && (globalThis as any)[key]) return (globalThis as any)[key];
+    // 4. Cloudflare env object fallback
+    if (typeof globalThis !== 'undefined' && (globalThis as any).env && (globalThis as any).env[key]) return (globalThis as any).env[key];
+    return undefined;
+  };
+
+  const SUPABASE_URL = getEnv('VITE_SUPABASE_URL') || getEnv('SUPABASE_URL');
+  const SUPABASE_PUBLISHABLE_KEY = getEnv('VITE_SUPABASE_PUBLISHABLE_KEY') || getEnv('SUPABASE_PUBLISHABLE_KEY');
 
   if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+    console.error('Supabase configuration error: Missing URL or Key', {
+      hasUrl: !!SUPABASE_URL,
+      hasKey: !!SUPABASE_PUBLISHABLE_KEY
+    });
     throw new Error(
-      'Missing Supabase environment variables. Ensure SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY (or VITE_ prefixed versions) are set in your .env file.'
+      'Missing Supabase environment variables. Ensure SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY are set in your dashboard or wrangler.jsonc.'
     );
   }
 
@@ -33,4 +47,3 @@ export const supabase = new Proxy({} as ReturnType<typeof createSupabaseClient>,
     return Reflect.get(_supabase, prop, receiver);
   },
 });
-
