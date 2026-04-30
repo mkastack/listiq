@@ -40,7 +40,7 @@ function MyArticles() {
     let listingsQuery = supabase.from('listings').select('id, name');
     
     // If admin, show all listings. Otherwise only owned ones.
-    if (session.user.email !== 'mkastack373@gmail.com') {
+    if (session.user.email !== 'admin@listiq.com') {
       listingsQuery = listingsQuery.eq('owner_id', session.user.id);
     }
     

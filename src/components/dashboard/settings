@@ -205,13 +205,13 @@
                             <label class="font-label-caps text-label-caps text-slate-600">PAYSTACK SECRET KEY</label>
                             <input
                                 class="w-full font-code text-code border-slate-200 rounded px-3 py-2 focus:ring-2 focus:ring-primary focus:border-primary outline-none"
-                                type="password" value="sk_test_51MzS2..." />
+                                type="password" value="sk_test_eb3d33d228801db02aba5cbbc33941255a0fa767" />
                         </div>
                         <div class="space-y-2">
                             <label class="font-label-caps text-label-caps text-slate-600">PAYSTACK PUBLIC KEY</label>
                             <input
                                 class="w-full font-code text-code border-slate-200 rounded px-3 py-2 focus:ring-2 focus:ring-primary focus:border-primary outline-none"
-                                type="text" value="pk_test_82Hk1..." />
+                                type="text" value="pk_test_62a882da2b5348732a1220f494288036431bc140" />
                         </div>
                     </div>
                     <div class="mt-6 flex justify-end gap-3">

@@ -35,14 +35,14 @@ export function AdminSignIn({ onSignIn }: AdminSignInProps) {
     }
 
     // Admin Email Restriction
-    if (email !== "mkastack373@gmail.com") {
+    if (email !== "admin@listiq.com") {
       setError("Access Denied: Only the system administrator can access this panel.");
       setIsLoading(false);
       return;
     }
 
     // Admin Bypass for specific user credentials
-    if (email === "mkastack373@gmail.com" && password === "iotaiq@26") {
+    if (email === "admin@listiq.com" && password === "iotaiq@26") {
       if (isMFAActive) {
         setShowMFA(true);
         setIsLoading(false);
@@ -117,7 +117,7 @@ export function AdminSignIn({ onSignIn }: AdminSignInProps) {
                     <input
                       className="w-full pl-10 pr-4 py-3.5 bg-white border border-[#E2E8F0] rounded-xl focus:ring-2 focus:ring-[#2563EB]/10 focus:border-[#2563EB] transition-all outline-none text-[#0F172A]"
                       id="email"
-                      placeholder="mkastack373@gmail.com"
+                      placeholder="admin@listiq.com"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
