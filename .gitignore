@@ -7,7 +7,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+.pnpm-store
+
+# Build and Tooling
 dist
 dist-ssr
 .output
@@ -20,6 +24,15 @@ dist-ssr
 .wrangler/
 .dev.vars
 
+# Environment Variables
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -30,4 +43,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.env
