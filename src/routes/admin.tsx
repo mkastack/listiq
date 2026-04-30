@@ -20,7 +20,7 @@ function AdminLayout() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      const isAdmin = session?.user?.email === 'admin@listiq.com';
+      const isAdmin = session?.user?.email === 'mkastack373@gmail.com';
       setIsAuthenticated(isAdmin);
       if (session && isAdmin) {
         fetchProfile(session.user.id);
@@ -31,7 +31,7 @@ function AdminLayout() {
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      const isAdmin = session?.user?.email === 'admin@listiq.com';
+      const isAdmin = session?.user?.email === 'mkastack373@gmail.com';
       setIsAuthenticated(isAdmin);
       if (session && isAdmin) {
         fetchProfile(session.user.id);
