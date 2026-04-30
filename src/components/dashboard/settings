@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#dae2fd",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-variant": "#e1e2ed",
+                        "on-background": "#191b23",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "outline-variant": "#c3c6d7",
+                        "surface-dim": "#d9d9e5",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#ededf9",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#943700",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-container-low": "#f3f3fe",
+                        "inverse-surface": "#2e3039",
+                        "on-secondary-container": "#5c647a",
+                        "on-primary-container": "#eeefff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "primary-container": "#2563eb",
+                        "surface": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "primary": "#004ac6",
+                        "surface-tint": "#0053db",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e7e7f3",
+                        "on-surface": "#191b23",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-container": "#ffede6",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-on-surface": "#f0f0fb",
+                        "tertiary-container": "#bc4800",
+                        "inverse-primary": "#b4c5ff",
+                        "outline": "#737686",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary": "#565e74",
+                        "on-secondary-fixed": "#131b2e",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container-highest": "#e1e2ed",
+                        "on-surface-variant": "#434655",
+                        "background": "#faf8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "element-gap": "12px",
+                        "max-width": "1440px",
+                        "grid-columns": "12",
+                        "card-gap": "24px",
+                        "unit": "4px",
+                        "container-padding": "32px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "display-stat": ["Plus Jakarta Sans"],
+                        "code": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "h2": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-stat": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "code": ["13px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            background-color: #F8FAFC;
+        }
+    </style>
+</head>
+
+<body class="antialiased text-on-surface">
+    <!-- TopNavBar -->
+    <header class="bg-slate-950 dark:bg-black border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
+        <div class="flex flex-col w-full px-6 max-w-[1440px] mx-auto h-24 justify-center">
+            <div class="flex items-center justify-between w-full">
+                <div class="flex items-center gap-8">
+                    <span class="text-xl font-black text-white tracking-tighter">ListIQ</span>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 font-['Plus_Jakarta_Sans'] text-sm tracking-tight transition-colors duration-200"
+                            href="#">Overview</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 font-['Plus_Jakarta_Sans'] text-sm tracking-tight transition-colors duration-200"
+                            href="#">Listings</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 font-['Plus_Jakarta_Sans'] text-sm tracking-tight transition-colors duration-200"
+                            href="#">Users</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 font-['Plus_Jakarta_Sans'] text-sm tracking-tight transition-colors duration-200"
+                            href="#">Claims</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 font-['Plus_Jakarta_Sans'] text-sm tracking-tight transition-colors duration-200"
+                            href="#">Articles</a>
+                        <a class="text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 font-bold pb-2 font-['Plus_Jakarta_Sans'] text-sm tracking-tight"
+                            href="#">Settings</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="material-symbols-outlined text-slate-400 hover:bg-slate-800/50 p-2 rounded transition-colors"
+                            data-icon="notifications">notifications</span>
+                        <div
+                            class="bg-rose-500 text-white font-['Manrope'] font-bold text-[11px] uppercase px-2 py-0.5 rounded">
+                            Admin</div>
+                    </div>
+                    <img alt="Admin avatar" class="w-8 h-8 rounded-full border border-slate-700"
+                        data-alt="professional male headshot with neutral background, corporate style lighting and clean aesthetic"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF23shazEpa8dd9olH1_BvuhALdbUSfpgwqSRz8o2G_Amb9BOJ52RJzl-wt-0u9CUaf4d7xu_RKODH6XPoy-sAqWS2xmoiGNJ5LAaVEw1vvySMQvCtPszVzIaBx5N2WpLIIvibCN3VNUzcw4VSHflRH7J9wa0MGoBE08OxWpTBnP-huFpnraYuwx9yRh3GNX35jcgqcyD65wHvXv5GsXkNnBAkwd6GgJI3N-ZIieHsnv_0kkmU7J1v64LH8sisIM5U0Mgd4SLyJHg" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-[1440px] mx-auto px-6 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <div class="flex items-center gap-2 text-slate-500 mb-2">
+                <span class="font-body-sm text-body-sm">Settings</span>
+                <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+                <span class="font-body-sm text-body-sm text-primary font-medium">Site Settings</span>
+            </div>
+            <h1 class="font-h1 text-h1 text-on-surface">Site Settings</h1>
+            <p class="font-body-md text-body-md text-slate-500">Configure platform-wide settings and third-party API
+                integrations.</p>
+        </div>
+        <!-- Sub-navigation Tabs -->
+        <div class="flex items-center border-b border-outline-variant mb-8 gap-8">
+            <button
+                class="pb-4 font-body-md text-body-md text-slate-500 hover:text-on-surface transition-colors">General</button>
+            <button
+                class="pb-4 font-body-md text-body-md text-slate-500 hover:text-on-surface transition-colors">SEO</button>
+            <button
+                class="pb-4 font-body-md text-body-md text-primary border-b-2 border-primary font-semibold">Integrations</button>
+            <button
+                class="pb-4 font-body-md text-body-md text-slate-500 hover:text-on-surface transition-colors">Advanced</button>
+        </div>
+        <div class="grid grid-cols-12 gap-card-gap">
+            <!-- Main Content Area -->
+            <div class="col-span-12 lg:col-span-8 space-y-card-gap">
+                <!-- Payment Integration Card -->
+                <section class="bg-white border border-slate-200 rounded p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-secondary-container rounded flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary"
+                                    data-icon="payments">payments</span>
+                            </div>
+                            <div>
+                                <h2 class="font-h2 text-h2">Payment Gateway</h2>
+                                <p class="font-body-sm text-body-sm text-slate-500">Manage your Paystack payment
+                                    processing credentials.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-50 p-1 rounded border border-slate-200">
+                            <button
+                                class="px-3 py-1 text-xs font-semibold bg-white shadow-sm border border-slate-200 rounded">Test</button>
+                            <button class="px-3 py-1 text-xs font-semibold text-slate-500">Live</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="font-label-caps text-label-caps text-slate-600">PAYSTACK SECRET KEY</label>
+                            <input
+                                class="w-full font-code text-code border-slate-200 rounded px-3 py-2 focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                                type="password" value="sk_test_51MzS2..." />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-caps text-label-caps text-slate-600">PAYSTACK PUBLIC KEY</label>
+                            <input
+                                class="w-full font-code text-code border-slate-200 rounded px-3 py-2 focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                                type="text" value="pk_test_82Hk1..." />
+                        </div>
+                    </div>
+                    <div class="mt-6 flex justify-end gap-3">
+                        <button
+                            class="px-4 py-2 font-body-md text-body-md text-primary font-semibold hover:bg-slate-50 rounded transition-colors border border-primary/20">Test
+                            Connectivity</button>
+                        <button
+                            class="px-4 py-2 font-body-md text-body-md bg-primary text-white font-semibold rounded hover:bg-primary-container transition-colors">Save
+                            Changes</button>
+                    </div>
+                </section>
+                <!-- SMS Gateways Card -->
+                <section class="bg-white border border-slate-200 rounded overflow-hidden">
+                    <div class="p-6 border-b border-slate-100 bg-slate-50/50">
+                        <h2 class="font-h2 text-h2 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-slate-400" data-icon="sms">sms</span>
+                            SMS Gateways
+                        </h2>
+                    </div>
+                    <!-- mNotify (Expanded) -->
+                    <div class="border-b border-slate-100 p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-4">
+                                <span class="material-symbols-outlined text-primary"
+                                    data-icon="expand_more">expand_more</span>
+                                <span class="font-body-md text-body-md font-bold">mNotify Integration</span>
+                                <span
+                                    class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1 uppercase">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Active
+                                </span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pl-8">
+                            <div class="space-y-2">
+                                <label class="font-label-caps text-label-caps text-slate-600 uppercase">API KEY</label>
+                                <input class="w-full font-code text-code border-slate-200 rounded px-3 py-2 bg-slate-50"
+                                    type="password" value="mn_auth_921003847" />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="font-label-caps text-label-caps text-slate-600 uppercase">SENDER
+                                    ID</label>
+                                <input class="w-full font-body-md text-body-md border-slate-200 rounded px-3 py-2"
+                                    type="text" value="LISTIQ_MSG" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Twilio (Collapsed) -->
+                    <div
+                        class="border-b border-slate-100 p-6 flex items-center justify-between hover:bg-slate-50 cursor-pointer transition-colors">
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-slate-400"
+                                data-icon="chevron_right">chevron_right</span>
+                            <span class="font-body-md text-body-md font-semibold text-slate-600">Twilio SMS</span>
+                        </div>
+                        <span class="text-xs text-slate-400 font-medium">Inactive</span>
+                    </div>
+                    <!-- Hubtel (Collapsed) -->
+                    <div
+                        class="p-6 flex items-center justify-between hover:bg-slate-50 cursor-pointer transition-colors">
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-slate-400"
+                                data-icon="chevron_right">chevron_right</span>
+                            <span class="font-body-md text-body-md font-semibold text-slate-600">Hubtel Gateway</span>
+                        </div>
+                        <span class="text-xs text-slate-400 font-medium">Inactive</span>
+                    </div>
+                </section>
+                <!-- Maps Integration -->
+                <section class="bg-white border border-slate-200 rounded p-6">
+                    <div class="mb-6">
+                        <h2 class="font-h2 text-h2 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-slate-400" data-icon="map">map</span>
+                            Maps &amp; Geolocation
+                        </h2>
+                        <p class="font-body-sm text-body-sm text-slate-500">Configure map providers for listing
+                            locations.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="font-label-caps text-label-caps text-slate-600 uppercase">GOOGLE MAPS API
+                                    KEY</label>
+                                <div class="relative">
+                                    <input class="w-full font-code text-code border-slate-200 rounded px-3 py-2 pr-10"
+                                        type="text" value="AIzaSyB3XvN..." />
+                                    <span
+                                        class="material-symbols-outlined absolute right-3 top-2 text-slate-400 cursor-pointer"
+                                        data-icon="visibility">visibility</span>
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg flex gap-3 border border-blue-100">
+                                <span class="material-symbols-outlined text-blue-600" data-icon="info">info</span>
+                                <p class="text-xs text-blue-800 leading-relaxed">
+                                    Make sure Geocoding API and Places API are enabled in your Google Cloud Console for
+                                    this key.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-caps text-label-caps text-slate-600 uppercase">PREVIEW (ACCRA,
+                                GHANA)</label>
+                            <div class="h-48 rounded-lg overflow-hidden border border-slate-200 relative">
+                                <img class="w-full h-full object-cover grayscale-[0.2]"
+                                    data-alt="stylized satellite view map of urban Accra city layout with high contrast roads and landmarks"
+                                    data-location="Accra"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhwIa06iGgPFmbn1b31hhtyKpvfqA3tJnksOsvdbMhNvzwR9v6mMTldOthn_wr_kwcWCZgvyATyUZ8WYFxaB442RqF5jjyB76jMkqvr169lYyteLOrl2MZOp40YtQdKeRBM6I-hd0FEs35pYCz_Bwcx12VT-WBK28oUMT5k4h0HG9T0Z0KHfgB0uYzcaXj6kvx81YIdkYXuwS5gwVN7T7RMkt9IsbCQPv3uO9HfEHETNlnHMEP6gZzmJflsIyblnb2EIDNBeRzLwE" />
+                                <div
+                                    class="absolute inset-0 bg-primary/10 pointer-events-none flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-primary text-4xl"
+                                        data-icon="location_on" data-weight="fill"
+                                        style="font-variation-settings: 'FILL' 1;">location_on</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- Sidebar Info / Danger Zone -->
+            <div class="col-span-12 lg:col-span-4 space-y-card-gap">
+                <!-- Helper Card -->
+                <div class="bg-white border border-slate-200 rounded p-6">
+                    <h3 class="font-h2 text-[16px] mb-4">Documentation</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary mt-0.5"
+                                data-icon="menu_book">menu_book</span>
+                            <div>
+                                <p class="font-body-md text-body-md font-semibold">Integration Guide</p>
+                                <p class="text-[12px] text-slate-500">Learn how to setup API keys for third-party
+                                    services.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-primary mt-0.5"
+                                data-icon="history">history</span>
+                            <div>
+                                <p class="font-body-md text-body-md font-semibold">Change Logs</p>
+                                <p class="text-[12px] text-slate-500">View recent modifications to system settings.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Danger Zone -->
+                <div class="bg-white border-2 border-error/20 rounded p-6">
+                    <div class="flex items-center gap-2 mb-4 text-error">
+                        <span class="material-symbols-outlined" data-icon="warning">warning</span>
+                        <h3 class="font-label-caps text-label-caps uppercase">Danger Zone</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="font-body-sm text-body-sm text-slate-600">
+                            Resetting all settings will revert the platform to its factory state. All integrations will
+                            be disconnected.
+                        </p>
+                        <div class="space-y-2">
+                            <label class="font-label-caps text-[10px] text-slate-500">TYPE "RESET" TO CONFIRM</label>
+                            <input
+                                class="w-full border-error/30 rounded px-3 py-2 font-code text-error placeholder:text-error/30 focus:ring-error outline-none"
+                                placeholder="RESET" type="text" />
+                        </div>
+                        <button
+                            class="w-full py-2 bg-error text-white font-semibold rounded hover:bg-red-700 transition-colors font-body-md text-body-md">Reset
+                            all settings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Floating Action Button (Contextual Support) -->
+    <button
+        class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-transform z-50">
+        <span class="material-symbols-outlined" data-icon="help_center">help_center</span>
+    </button>
+</body>
+
+</html>

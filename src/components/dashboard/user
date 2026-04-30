@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#dae2fd",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-variant": "#e1e2ed",
+                        "on-background": "#191b23",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "outline-variant": "#c3c6d7",
+                        "surface-dim": "#d9d9e5",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#ededf9",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#943700",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-container-low": "#f3f3fe",
+                        "inverse-surface": "#2e3039",
+                        "on-secondary-container": "#5c647a",
+                        "on-primary-container": "#eeefff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "primary-container": "#2563eb",
+                        "surface": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "primary": "#004ac6",
+                        "surface-tint": "#0053db",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e7e7f3",
+                        "on-surface": "#191b23",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-container": "#ffede6",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-on-surface": "#f0f0fb",
+                        "tertiary-container": "#bc4800",
+                        "inverse-primary": "#b4c5ff",
+                        "outline": "#737686",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary": "#565e74",
+                        "on-secondary-fixed": "#131b2e",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container-highest": "#e1e2ed",
+                        "on-surface-variant": "#434655",
+                        "background": "#faf8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "element-gap": "12px",
+                        "max-width": "1440px",
+                        "grid-columns": "12",
+                        "card-gap": "24px",
+                        "unit": "4px",
+                        "container-padding": "32px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "display-stat": ["Plus Jakarta Sans"],
+                        "code": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "h2": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-stat": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "code": ["13px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+            font-size: 20px;
+        }
+
+        .user-suspended {
+            border-left: 4px solid #F43F5E;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+    <!-- TopNavBar -->
+    <header class="bg-slate-950 dark:bg-black border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
+        <div class="flex flex-col w-full px-6 max-w-[1440px] mx-auto h-24 justify-center">
+            <div class="flex items-center justify-between w-full">
+                <div class="flex items-center gap-8">
+                    <span class="text-xl font-black text-white tracking-tighter">ListIQ</span>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a class="text-slate-500 font-medium hover:text-slate-100 transition-colors duration-200 text-sm tracking-tight"
+                            href="#">Overview</a>
+                        <a class="text-slate-500 font-medium hover:text-slate-100 transition-colors duration-200 text-sm tracking-tight"
+                            href="#">Listings</a>
+                        <a class="text-blue-400 border-b-2 border-blue-600 font-bold pb-2 text-sm tracking-tight"
+                            href="#">Users</a>
+                        <a class="text-slate-500 font-medium hover:text-slate-100 transition-colors duration-200 text-sm tracking-tight"
+                            href="#">Claims</a>
+                        <a class="text-slate-500 font-medium hover:text-slate-100 transition-colors duration-200 text-sm tracking-tight"
+                            href="#">Articles</a>
+                        <a class="text-slate-500 font-medium hover:text-slate-100 transition-colors duration-200 text-sm tracking-tight"
+                            href="#">Settings</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <span class="material-symbols-outlined text-slate-400">notifications</span>
+                        <span class="absolute top-0 right-0 w-2 h-2 bg-rose-500 rounded-full"></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="bg-rose-500 text-white font-bold text-[11px] uppercase px-2 py-0.5 rounded-sm font-label-caps">Admin</span>
+                        <img alt="Admin avatar" class="w-8 h-8 rounded-full border border-slate-700"
+                            data-alt="professional corporate headshot of a senior administrator with a confident expression and clean background"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzL1PSoJKy8wM2ezGqaKkw9Xqr64BDAz5MnNdfjKCLbsX77LjlQKpjmIfuX9UWHh47hHrCVll_5tYtKxF_ka3w0Dld_xI9X3Z2mr5CEuoifNydTTsz9SmsK5bJoD81fxmEGxq1sUecXCgtLd4fWUsKnhdASLfD1mwaT60V70bATgqGf9CFfF9dbT1KXnMe3fwC73wqAs3WGzP1SP5LWRMTHx2b5nk_gUZxVCdhWS7ybcNiVPFThhImw2aPS0EExGFbgyS1xb_XTyI" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-[1440px] mx-auto px-6 py-8">
+        <!-- Page Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+            <div>
+                <h1 class="font-h1 text-h1 text-on-background">Users</h1>
+                <p class="text-on-surface-variant text-body-md">Manage all registered platform users</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button
+                    class="bg-white border border-outline-variant px-4 py-2 rounded-lg flex items-center gap-2 text-body-md hover:bg-surface-container transition-colors">
+                    <span class="material-symbols-outlined">download</span>
+                    Export CSV
+                </button>
+                <button
+                    class="bg-primary text-white px-4 py-2 rounded-lg font-bold flex items-center gap-2 text-body-md shadow-sm hover:opacity-90 transition-opacity">
+                    <span class="material-symbols-outlined">person_add</span>
+                    Invite User
+                </button>
+            </div>
+        </div>
+        <!-- Stats Chips -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white border border-outline-variant p-4 rounded-xl flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined">group</span>
+                </div>
+                <div>
+                    <p class="text-body-sm text-on-surface-variant font-label-caps">TOTAL USERS</p>
+                    <p class="text-h2 font-h2">12,842</p>
+                </div>
+            </div>
+            <div class="bg-white border border-outline-variant p-4 rounded-xl flex items-center gap-4">
+                <div
+                    class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+                    <span class="material-symbols-outlined">verified</span>
+                </div>
+                <div>
+                    <p class="text-body-sm text-on-surface-variant font-label-caps">VERIFIED</p>
+                    <p class="text-h2 font-h2">8,211</p>
+                </div>
+            </div>
+            <div class="bg-white border border-outline-variant p-4 rounded-xl flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary">
+                    <span class="material-symbols-outlined">star</span>
+                </div>
+                <div>
+                    <p class="text-body-sm text-on-surface-variant font-label-caps">PRO PLANS</p>
+                    <p class="text-h2 font-h2">1,054</p>
+                </div>
+            </div>
+            <div class="bg-white border border-outline-variant p-4 rounded-xl flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-error">
+                    <span class="material-symbols-outlined">block</span>
+                </div>
+                <div>
+                    <p class="text-body-sm text-on-surface-variant font-label-caps">SUSPENDED</p>
+                    <p class="text-h2 font-h2">42</p>
+                </div>
+            </div>
+        </div>
+        <!-- Filter Bar -->
+        <div
+            class="bg-surface-container-low border border-outline-variant rounded-xl p-4 mb-6 flex flex-wrap items-center gap-4">
+            <div class="flex-grow min-w-[300px] relative">
+                <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+                <input
+                    class="w-full bg-white border border-outline-variant rounded-lg pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary focus:outline-none transition-shadow"
+                    placeholder="Search by name, email or ID..." type="text" />
+            </div>
+            <select
+                class="bg-white border border-outline-variant rounded-lg px-4 py-2 text-body-md outline-none focus:ring-2 focus:ring-primary">
+                <option>All Roles</option>
+                <option>Admin</option>
+                <option>Editor</option>
+                <option>User</option>
+            </select>
+            <select
+                class="bg-white border border-outline-variant rounded-lg px-4 py-2 text-body-md outline-none focus:ring-2 focus:ring-primary">
+                <option>All Plans</option>
+                <option>Free</option>
+                <option>Standard</option>
+                <option>Pro</option>
+                <option>Enterprise</option>
+            </select>
+            <select
+                class="bg-white border border-outline-variant rounded-lg px-4 py-2 text-body-md outline-none focus:ring-2 focus:ring-primary">
+                <option>All Status</option>
+                <option>Active</option>
+                <option>Pending</option>
+                <option>Suspended</option>
+            </select>
+            <button
+                class="bg-surface-variant text-on-surface-variant px-4 py-2 rounded-lg font-medium text-body-md hover:bg-outline-variant transition-colors">
+                Apply Filters
+            </button>
+        </div>
+        <!-- Users Table -->
+        <div class="bg-white border border-outline-variant rounded-xl overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-surface-container-high border-b border-outline-variant">
+                        <tr>
+                            <th class="px-6 py-4 text-body-sm font-label-caps text-on-surface-variant">USER</th>
+                            <th class="px-6 py-4 text-body-sm font-label-caps text-on-surface-variant">CONTACT</th>
+                            <th class="px-6 py-4 text-body-sm font-label-caps text-on-surface-variant">ROLE</th>
+                            <th class="px-6 py-4 text-body-sm font-label-caps text-on-surface-variant">PLAN</th>
+                            <th class="px-6 py-4 text-body-sm font-label-caps text-on-surface-variant">LISTINGS</th>
+                            <th class="px-6 py-4 text-body-sm font-label-caps text-on-surface-variant">JOINED</th>
+                            <th class="px-6 py-4 text-body-sm font-label-caps text-on-surface-variant">STATUS</th>
+                            <th class="px-6 py-4 text-body-sm font-label-caps text-on-surface-variant text-right">
+                                ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-outline-variant">
+                        <!-- Suspended User Sample -->
+                        <tr class="user-suspended hover:bg-surface-container-lowest transition-colors group">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <img alt="John Mensah" class="w-10 h-10 rounded-full"
+                                        data-alt="close up profile of a man with short hair and a focused expression against a light blue studio background"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC25d6AC7fIL5KvCqOFFlKULbi2yst5dxBdevNKboxNgtic58ijzcJJDdwa7we_Fi9bI8pAh9Bd4tD-39uHm12_mv9K10f_SZIslHY02DqfPlq5SoapFaX0__PYeTfc9bCu-Oj13TKI8WI2V6iwXJDxlLdXViwaK4BbPqbOCFmDduQFjfrggoFMNkflm_juqZoSKmOBZPkBO-GzBbRRpL-TaqfY5Qn9EIrtEz0wSK91JfA64cnR4hugMoSYmFy7QTd73bStd0IA-5M" />
+                                    <div>
+                                        <p class="font-bold text-on-background">John Mensah</p>
+                                        <p class="text-body-sm text-on-surface-variant">ID: 88219</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-body-md">
+                                <p>j.mensah@company.com</p>
+                                <p class="text-on-surface-variant">+233 24 555 0122</p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded text-body-sm font-semibold">User</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded text-body-sm font-semibold">Free</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-body-md">04</td>
+                            <td class="px-6 py-4 text-on-surface-variant text-body-md">Oct 12, 2023</td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-error"></span>
+                                    <span class="text-error font-medium text-body-sm">Suspended</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+                                    <span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Active User 1 -->
+                        <tr class="hover:bg-surface-container-lowest transition-colors group">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <img alt="Sarah Chen" class="w-10 h-10 rounded-full"
+                                        data-alt="modern professional woman with glasses and a friendly smile in a bright office setting"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8dgRt12oJxhdEdpvAenSeSKxLOLQj__-ayfxUw_7A3ui8LDvbIrEmecTGoPbo_85BKJmqjLvyWU2DZE7My9BKNg7jDcykGmg1hbKZGqYg0ErWHVY2H-N13iUuxz-WNIeHorIom30Hi5iEDRdJ1NtpY2_7eTTtVBnNvFQBefok1n2SvtOQj5CxRICMnZp3FkoBwAFxHsc3ZuPWR_Kmg3o2FftA5lvEaekpk6zZB6hLTT_0oVFIXtccuW3EUelsjCCcxxMunbjHO0I" />
+                                    <div>
+                                        <p class="font-bold text-on-background">Sarah Chen</p>
+                                        <p class="text-body-sm text-on-surface-variant">ID: 88402</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-body-md">
+                                <p>schen.design@mail.com</p>
+                                <p class="text-on-surface-variant">+1 415 555 0991</p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="bg-primary-fixed text-primary px-2 py-1 rounded text-body-sm font-semibold">Editor</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="bg-primary-container text-on-primary-container px-2 py-1 rounded text-body-sm font-semibold">Pro</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-body-md">42</td>
+                            <td class="px-6 py-4 text-on-surface-variant text-body-md">Jan 05, 2024</td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                    <span class="text-green-600 font-medium text-body-sm">Active</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+                                    <span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Active User 2 -->
+                        <tr class="hover:bg-surface-container-lowest transition-colors group">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <img alt="Alex Rivera" class="w-10 h-10 rounded-full"
+                                        data-alt="creative professional male with beard and stylish headset in a workspace with warm lighting"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz14ZBLG_niZJcBNKvIE3RMynOTDJn5tShQa-T3y3OCvmbOvXlXgzk4at1pA0AL1pWS8lVHnAb1c8mWAAsN-I-S4TZVn4MPsx0GmoWBjqOfPdYWMo7nF9SpAkTd3RfKWQI81qet-BAFtJZSmWbfT8lJzVWVcezPpZ_i-XClXM_OWv91UsTCGuODPJpE9R6a1Z4zt949VaOfPEGqjeWSHcIOITlRue3Zf7PlyDfEqO9OmninBqYEclAJQeOHSkVwKzLgsi59buYIe4" />
+                                    <div>
+                                        <p class="font-bold text-on-background">Alex Rivera</p>
+                                        <p class="text-body-sm text-on-surface-variant">ID: 88511</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-body-md">
+                                <p>arivera@enterprise.io</p>
+                                <p class="text-on-surface-variant">+44 20 7946 0113</p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded text-body-sm font-semibold">User</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span
+                                    class="bg-tertiary-fixed text-tertiary px-2 py-1 rounded text-body-sm font-semibold">Enterprise</span>
+                            </td>
+                            <td class="px-6 py-4 font-mono text-body-md">118</td>
+                            <td class="px-6 py-4 text-on-surface-variant text-body-md">Feb 28, 2024</td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                    <span class="text-green-600 font-medium text-body-sm">Active</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+                                    <span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pagination -->
+            <div
+                class="px-6 py-4 bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+                <span class="text-body-sm text-on-surface-variant">Showing 1-10 of 12,842 users</span>
+                <div class="flex items-center gap-2">
+                    <button
+                        class="p-1 border border-outline-variant rounded hover:bg-white transition-colors disabled:opacity-50"
+                        disabled="">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button class="w-8 h-8 rounded bg-primary text-white font-bold text-body-sm">1</button>
+                    <button
+                        class="w-8 h-8 rounded hover:bg-white text-on-surface-variant font-medium text-body-sm">2</button>
+                    <button
+                        class="w-8 h-8 rounded hover:bg-white text-on-surface-variant font-medium text-body-sm">3</button>
+                    <span class="text-on-surface-variant">...</span>
+                    <button
+                        class="w-8 h-8 rounded hover:bg-white text-on-surface-variant font-medium text-body-sm">128</button>
+                    <button class="p-1 border border-outline-variant rounded hover:bg-white transition-colors">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Side Over Drawer (User Detail) -->
+    <div class="fixed inset-0 z-[100] overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm pointer-events-auto"></div>
+        <div
+            class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl pointer-events-auto flex flex-col">
+            <!-- Drawer Header -->
+            <div class="px-6 py-6 border-b border-outline-variant flex items-center justify-between">
+                <h2 class="font-h2 text-h2">User Profile</h2>
+                <button class="p-2 hover:bg-surface-container rounded-full transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <!-- Drawer Content -->
+            <div class="flex-grow overflow-y-auto">
+                <!-- User Identity Card -->
+                <div class="p-6 bg-surface-container-low border-b border-outline-variant">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img alt="John Mensah" class="w-20 h-20 rounded-2xl shadow-sm border-4 border-white"
+                            data-alt="vivid portrait of a smiling man with a warm tone, high contrast lighting, and professional photography style"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtcGm8SsDn3dgBdK4mGySXLbEEpFEjWnec9AX-JTY0tYOuhpcMrBN8Vg2uE0kRHbA9sYjLmH1CCXDimKWWURtcg0y7s7BQSVwmiAjyQwaYek3TC0ZVEDwg3lZepe2kEHOeTFUQSkkI1iFZXOCHBmJaMXTlyp8Y--knTuHAWmMrVFzq1CuPxvvitGZIyPEQrR8i6j37nW7XeMHFC1f2NwJzCD3JzP-fAVRd56NGgBfOVxhY8r6UNl1o2TNUg5gXvXHl5acqOFWqhW8" />
+                        <div>
+                            <p class="font-h2 text-h2">John Mensah</p>
+                            <p class="text-on-surface-variant text-body-md flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Accra, Ghana
+                            </p>
+                            <div class="mt-2 flex gap-2">
+                                <span
+                                    class="bg-error-container text-on-error-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Suspended</span>
+                                <span
+                                    class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Free
+                                    Plan</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button
+                            class="bg-primary text-white py-2 rounded-lg font-bold text-body-sm shadow-sm hover:opacity-90">Send
+                            Message</button>
+                        <button
+                            class="bg-white border border-outline-variant text-on-surface py-2 rounded-lg font-bold text-body-sm hover:bg-surface-container">Actions</button>
+                    </div>
+                </div>
+                <!-- Tabs -->
+                <div class="border-b border-outline-variant px-6 flex items-center gap-6 overflow-x-auto">
+                    <button
+                        class="py-4 border-b-2 border-primary text-primary font-bold text-body-md whitespace-nowrap">Overview</button>
+                    <button
+                        class="py-4 border-b-2 border-transparent text-on-surface-variant font-medium text-body-md hover:text-on-surface whitespace-nowrap">Listings</button>
+                    <button
+                        class="py-4 border-b-2 border-transparent text-on-surface-variant font-medium text-body-md hover:text-on-surface whitespace-nowrap">Activity</button>
+                    <button
+                        class="py-4 border-b-2 border-transparent text-on-surface-variant font-medium text-body-md hover:text-on-surface whitespace-nowrap">Settings</button>
+                </div>
+                <div class="p-6 space-y-8">
+                    <!-- About Section -->
+                    <section>
+                        <p class="text-body-sm font-label-caps text-on-surface-variant mb-3">CONTACT INFORMATION</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-on-surface-variant text-body-md">Email</span>
+                                <span class="font-medium text-on-background">j.mensah@company.com</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-on-surface-variant text-body-md">Phone</span>
+                                <span class="font-medium text-on-background">+233 24 555 0122</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-on-surface-variant text-body-md">Timezone</span>
+                                <span class="font-medium text-on-background">GMT +0 (Africa/Accra)</span>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Listing History -->
+                    <section>
+                        <div class="flex items-center justify-between mb-3">
+                            <p class="text-body-sm font-label-caps text-on-surface-variant">RECENT LISTINGS</p>
+                            <a class="text-primary text-body-sm font-bold" href="#">View all</a>
+                        </div>
+                        <div class="space-y-3">
+                            <div
+                                class="flex gap-3 bg-surface-container-lowest p-3 rounded-lg border border-outline-variant">
+                                <div class="w-12 h-12 rounded bg-slate-200 overflow-hidden">
+                                    <img alt="Listing" class="w-full h-full object-cover"
+                                        data-alt="luxury modern architectural villa with infinity pool at dusk with glowing interior lights"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZUljZVPKUR7B6d6AdfUHOOO3iZITSw9Bp-NfpOoCeXTILDJ_hTUYeSBzILM02Im-DrPRFyiqnSD2Cl4dHavxl3x3LmulKnyYLgWu9UngXlvUqvePdMp3SwYbRRg5PRW1lZoMoFeTQIotV6ubT6TYZ0-UyToz-pv2uS2mTFWHseyqYGv-4RKLxlCRMvOfawjNAilQ05q2zPXMLV2jX0OLdY4VaHTdW1cfuQL5VwQ__KR-DGwR_XDBBTEUF7h3EDeIJb85-LY124VM" />
+                                </div>
+                                <div class="flex-grow">
+                                    <p class="font-bold text-body-sm line-clamp-1">Luxury Villa in Labone</p>
+                                    <p class="text-[11px] text-on-surface-variant">Pending Review • 2 days ago</p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex gap-3 bg-surface-container-lowest p-3 rounded-lg border border-outline-variant">
+                                <div class="w-12 h-12 rounded bg-slate-200 overflow-hidden">
+                                    <img alt="Listing" class="w-full h-full object-cover"
+                                        data-alt="sleek corporate office interior with glass walls and minimalist furniture in cool morning light"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6ud_Zu912NiNjOOcYyATk2nGLterf8RS7jRRz7FL7gYqqrW6lhVBsvTzT2e8otpSsFOa1r7BtKJLPre6CF3R5bLeH5nRK8xWEHSbJA-Q0XmIvZjoA4Zrb7SIU7_FGDEV4ymfDQjj8k7_xFqkl3-RE-6uYmG483lVXh9d8m8wBpY5lbEW8zf4l8SmqdmfZPtQROAzJS3en0z4KJKWz-OpSqTyksYnXakQYl_DPa3Mya0x2AzyRMMVOBAZSQT6P0jrXizwTeKVEaPE" />
+                                </div>
+                                <div class="flex-grow">
+                                    <p class="font-bold text-body-sm line-clamp-1">Modern Office Suite</p>
+                                    <p class="text-[11px] text-on-surface-variant">Published • 1 week ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Recent Activity -->
+                    <section>
+                        <p class="text-body-sm font-label-caps text-on-surface-variant mb-3">SYSTEM LOGS</p>
+                        <div
+                            class="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-2 before:top-2 before:bottom-2 before:w-px before:bg-outline-variant">
+                            <div class="relative">
+                                <span
+                                    class="absolute -left-[22px] top-1 w-4 h-4 rounded-full bg-error border-4 border-white"></span>
+                                <p class="text-body-md font-bold">Account Suspended</p>
+                                <p class="text-body-sm text-on-surface-variant">Suspended by Admin (Auto-detection: TOS
+                                    violation)</p>
+                                <p class="text-[11px] text-on-surface-variant mt-1">Today, 10:45 AM</p>
+                            </div>
+                            <div class="relative">
+                                <span
+                                    class="absolute -left-[22px] top-1 w-4 h-4 rounded-full bg-primary border-4 border-white"></span>
+                                <p class="text-body-md font-bold">Failed Login Attempt</p>
+                                <p class="text-body-sm text-on-surface-variant">Unusual IP address detected (Frankfurt,
+                                    DE)</p>
+                                <p class="text-[11px] text-on-surface-variant mt-1">Yesterday, 11:20 PM</p>
+                            </div>
+                            <div class="relative">
+                                <span
+                                    class="absolute -left-[22px] top-1 w-4 h-4 rounded-full bg-outline-variant border-4 border-white"></span>
+                                <p class="text-body-md font-bold">Password Reset</p>
+                                <p class="text-body-sm text-on-surface-variant">User successfully updated credentials
+                                </p>
+                                <p class="text-[11px] text-on-surface-variant mt-1">Mar 12, 2024</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- Drawer Footer -->
+            <div class="p-6 border-t border-outline-variant bg-surface-container-high flex gap-3">
+                <button class="flex-grow bg-error text-white py-3 rounded-lg font-bold text-body-md">Unsuspend
+                    Account</button>
+                <button class="p-3 border border-outline-variant rounded-lg bg-white">
+                    <span class="material-symbols-outlined text-error">delete</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

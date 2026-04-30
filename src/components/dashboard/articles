@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#dae2fd",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-variant": "#e1e2ed",
+                        "on-background": "#191b23",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "outline-variant": "#c3c6d7",
+                        "surface-dim": "#d9d9e5",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#ededf9",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#943700",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-container-low": "#f3f3fe",
+                        "inverse-surface": "#2e3039",
+                        "on-secondary-container": "#5c647a",
+                        "on-primary-container": "#eeefff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "primary-container": "#2563eb",
+                        "surface": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e1e2ed",
+                        "on-surface": "#191b23",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-container": "#ffede6",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-on-surface": "#f0f0fb",
+                        "tertiary-container": "#bc4800",
+                        "inverse-primary": "#b4c5ff",
+                        "outline": "#737686",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary": "#565e74",
+                        "on-secondary-fixed": "#131b2e",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container-high": "#e7e7f3",
+                        "on-surface-variant": "#434655",
+                        "background": "#faf8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "element-gap": "12px",
+                        "max-width": "1440px",
+                        "grid-columns": "12",
+                        "card-gap": "24px",
+                        "unit": "4px",
+                        "container-padding": "32px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "display-stat": ["Plus Jakarta Sans"],
+                        "code": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "h2": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-stat": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "code": ["13px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body class="bg-background font-body-md text-on-surface">
+    <!-- TopNavBar -->
+    <header
+        class="bg-slate-950 dark:bg-black font-['Plus_Jakarta_Sans'] text-sm tracking-tight fixed top-0 left-0 w-full z-50 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex flex-col w-full px-6 max-w-[1440px] mx-auto h-24 justify-center">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <span class="text-xl font-black text-white tracking-tighter">ListIQ</span>
+                    <nav class="flex items-center gap-6">
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+                            href="#">Overview</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+                            href="#">Listings</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+                            href="#">Users</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+                            href="#">Claims</a>
+                        <a class="text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 font-bold pb-2"
+                            href="#">Articles</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+                            href="#">Settings</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative group">
+                        <span
+                            class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-white transition-colors">notifications</span>
+                        <span class="absolute -top-1 -right-1 w-2 h-2 bg-rose-500 rounded-full"></span>
+                    </div>
+                    <div class="flex items-center gap-2 pl-4 border-l border-slate-800">
+                        <img alt="Admin avatar" class="w-8 h-8 rounded-full border border-slate-700"
+                            data-alt="professional portrait of a confident male executive in a sleek modern office setting with soft natural lighting"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd9ZFhiCIDHrnthDcfF08T6ixXBrGlR506LrRi_ZFpEVh8P2P-_UE2lChz4IDscMo7zJB_QlAUqToIDoma8EhuanYpHNPV3jeU5arjFtevzXIv4ZQhxPBS9insEAYu74_6drvvNHh0qYGzI9V78Ycn88HScsxeRZPo9m9VcZlZEUfiiyFoEMMA3VqZs8rqD-gjtGPKPNMIUbKHzzfhac5GcBqZRC0xWy-vwJfS3fHjcrX4ltCUxfQya0S77ymEpXIMtfvBanALp_Q" />
+                        <span
+                            class="bg-rose-500 text-white font-['Manrope'] font-bold text-[11px] px-1.5 py-0.5 rounded uppercase">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="pt-32 pb-12 px-6 max-w-[1440px] mx-auto">
+        <!-- Header -->
+        <div class="mb-8 flex justify-between items-end">
+            <div>
+                <h1 class="font-h1 text-h1 text-on-surface">Articles</h1>
+                <p class="font-body-md text-on-surface-variant">Manage all platform articles and content</p>
+            </div>
+            <div class="flex gap-4">
+                <div class="bg-white px-4 py-3 border border-slate-200 rounded-xl flex items-center gap-6 shadow-sm">
+                    <div class="flex flex-col">
+                        <span class="font-label-caps text-label-caps text-on-surface-variant">PUBLISHED</span>
+                        <span class="font-display-stat text-[24px] text-on-surface">1,248</span>
+                    </div>
+                    <div class="w-px h-8 bg-slate-100"></div>
+                    <div class="flex flex-col">
+                        <span class="font-label-caps text-label-caps text-on-surface-variant">DRAFTS</span>
+                        <span class="font-display-stat text-[24px] text-on-surface">42</span>
+                    </div>
+                    <div class="w-px h-8 bg-slate-100"></div>
+                    <div class="flex flex-col">
+                        <span class="font-label-caps text-label-caps text-on-surface-variant">AI GENERATED</span>
+                        <span class="font-display-stat text-[24px] text-primary">856</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Action Bar -->
+        <div
+            class="bg-white border border-slate-200 rounded-xl p-4 mb-6 shadow-sm flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3 flex-1 min-w-[300px]">
+                <div class="relative flex-1">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+                    <input
+                        class="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg text-body-md focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                        placeholder="Search articles by title or author..." type="text" />
+                </div>
+                <select
+                    class="border border-slate-200 rounded-lg py-2 px-3 text-body-md bg-white text-on-surface-variant focus:ring-2 focus:ring-primary outline-none">
+                    <option>All Status</option>
+                    <option>Published</option>
+                    <option>Draft</option>
+                    <option>Review Needed</option>
+                </select>
+                <select
+                    class="border border-slate-200 rounded-lg py-2 px-3 text-body-md bg-white text-on-surface-variant focus:ring-2 focus:ring-primary outline-none">
+                    <option>All Authors</option>
+                    <option>System AI</option>
+                    <option>Editorial Team</option>
+                </select>
+            </div>
+            <div class="flex items-center gap-3">
+                <button
+                    class="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-on-surface px-4 py-2 rounded-lg font-semibold transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">sync</span>
+                    Fetch Now
+                </button>
+                <button
+                    class="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                    <span class="material-symbols-outlined text-[18px]">edit</span>
+                    Write Article
+                </button>
+                <button
+                    class="flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-lg font-semibold hover:bg-black transition-colors">
+                    <span class="material-symbols-outlined text-[18px]" data-weight="fill">colors_spark</span>
+                    Generate with AI
+                </button>
+            </div>
+        </div>
+        <!-- Auto-fetch Config Panel -->
+        <div class="bg-emerald-50/50 border border-emerald-200 rounded-xl p-6 mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-emerald-600">rss_feed</span>
+                    <h2 class="font-h2 text-[18px] text-emerald-900">Auto-fetch Configuration</h2>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-body-sm text-emerald-700 font-semibold">AI Rewrite Active</span>
+                    <button class="w-10 h-5 bg-emerald-500 rounded-full relative shadow-inner">
+                        <span class="absolute right-0.5 top-0.5 bg-white w-4 h-4 rounded-full shadow-sm"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="md:col-span-2">
+                    <label class="font-label-caps text-emerald-800 mb-1.5 block">RSS URL ENDPOINTS</label>
+                    <div class="flex flex-wrap gap-2 p-2 bg-white border border-emerald-200 rounded-lg min-h-[42px]">
+                        <span
+                            class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded text-body-sm flex items-center gap-1 border border-emerald-200">techcrunch.com/feed
+                            <span class="material-symbols-outlined text-[14px] cursor-pointer">close</span></span>
+                        <span
+                            class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded text-body-sm flex items-center gap-1 border border-emerald-200">theverge.com/rss
+                            <span class="material-symbols-outlined text-[14px] cursor-pointer">close</span></span>
+                        <input class="border-none p-0 focus:ring-0 text-body-sm flex-1 min-w-[120px]"
+                            placeholder="Add feed URL..." type="text" />
+                    </div>
+                </div>
+                <div>
+                    <label class="font-label-caps text-emerald-800 mb-1.5 block">FETCH FREQUENCY</label>
+                    <select
+                        class="w-full bg-white border border-emerald-200 rounded-lg py-2 px-3 text-body-md text-on-surface-variant focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <option>Every 30 Minutes</option>
+                        <option>Every Hour</option>
+                        <option>Daily at 9:00 AM</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="font-label-caps text-emerald-800 mb-1.5 block">CATEGORY MAPPING</label>
+                    <select
+                        class="w-full bg-white border border-emerald-200 rounded-lg py-2 px-3 text-body-md text-on-surface-variant focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <option>Technology &amp; SaaS</option>
+                        <option>Market Updates</option>
+                        <option>Productivity</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mt-4">
+                <label class="font-label-caps text-emerald-800 mb-1.5 block">KEYWORDS (AUTO-FILTER)</label>
+                <div class="flex flex-wrap gap-2">
+                    <span
+                        class="bg-white border border-emerald-200 px-3 py-1 rounded-full text-body-sm text-emerald-700">#startup</span>
+                    <span
+                        class="bg-white border border-emerald-200 px-3 py-1 rounded-full text-body-sm text-emerald-700">#saas</span>
+                    <span
+                        class="bg-white border border-emerald-200 px-3 py-1 rounded-full text-body-sm text-emerald-700">#automation</span>
+                    <span
+                        class="bg-white border border-emerald-200 px-3 py-1 rounded-full text-body-sm text-emerald-700">#growth</span>
+                    <button
+                        class="bg-emerald-600 text-white px-3 py-1 rounded-full text-body-sm font-bold flex items-center gap-1">Add
+                        Keyword</button>
+                </div>
+            </div>
+        </div>
+        <!-- Articles Table -->
+        <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-slate-50 border-b border-slate-200">
+                        <th class="px-6 py-4 font-label-caps text-on-surface-variant">COVER &amp; TITLE</th>
+                        <th class="px-6 py-4 font-label-caps text-on-surface-variant">AUTHOR</th>
+                        <th class="px-6 py-4 font-label-caps text-on-surface-variant">TYPE</th>
+                        <th class="px-6 py-4 font-label-caps text-on-surface-variant">STATUS</th>
+                        <th class="px-6 py-4 font-label-caps text-on-surface-variant">VIEWS</th>
+                        <th class="px-6 py-4 font-label-caps text-on-surface-variant text-right">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    <!-- Row 1: AI Generated -->
+                    <tr class="hover:bg-slate-50/50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-4">
+                                <img class="w-16 h-10 object-cover rounded-lg border border-slate-200"
+                                    data-alt="futuristic humanoid robot typing on a glowing laptop in a dark high-tech environment with blue neon highlights"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD-8WBlzlEu_O6pF0DmRvcygpQp9KfSQ44PxWpZGwEAZMB6Jf-S35Blv4A9eFkdDEgJYeT0_MZ_givedBriq1KlS192-awwgfLC-87GdpJ7PY3T4ionckrVa1--HPg0vkQisf0r_IZ0iGvhtEUk6lvJF8GChrF2apFhllFV2CdF2p1C5wX1QP6_FFN_ep9UFrXaATzKWyNMb8Lm3xRHXQ6-d8CSZeO8OqteGIuHaVgc8-Me5fDMHd0bSDw6nRxDX5Ml41Z5H5wYWw" />
+                                <div class="flex flex-col">
+                                    <span class="font-semibold text-on-surface line-clamp-1">The Future of Generative UI
+                                        in SaaS Dashboards</span>
+                                    <span class="text-body-sm text-on-surface-variant">Published 2 hours ago</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2">
+                                <div
+                                    class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-[10px] font-bold">
+                                    AI</div>
+                                <span class="text-body-md">ListIQ AI Writer</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span
+                                class="bg-blue-50 text-blue-600 px-2 py-1 rounded text-[11px] font-bold uppercase tracking-wider">AI
+                                Generated</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                                <span class="text-body-sm text-emerald-700 font-semibold">Published</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="font-code text-slate-600">12,482</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex justify-end gap-2">
+                                <button
+                                    class="p-1.5 hover:bg-slate-100 rounded text-slate-400 hover:text-primary transition-colors"><span
+                                        class="material-symbols-outlined text-[18px]">visibility</span></button>
+                                <button
+                                    class="p-1.5 hover:bg-slate-100 rounded text-slate-400 hover:text-primary transition-colors"><span
+                                        class="material-symbols-outlined text-[18px]">edit</span></button>
+                                <button
+                                    class="p-1.5 hover:bg-slate-100 rounded text-slate-400 hover:text-rose-500 transition-colors"><span
+                                        class="material-symbols-outlined text-[18px]">delete</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Row 2: Auto-fetched (Needs Review) -->
+                    <tr class="hover:bg-slate-50/50 transition-colors border-l-4 border-emerald-400">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-4">
+                                <img class="w-16 h-10 object-cover rounded-lg border border-slate-200"
+                                    data-alt="clean minimal web design layout on a screen with light grey and white accents in a brightly lit modern office"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY_dNsmZg8DjXDHC82GKrteUS2Zoyq82Tgl9xJlpTl4BtE-LmnmP1K8hb1pZvdTXqlzvTvXpzN1ZdcoEX40TjjBOp3fBoib3GHd_B4BsGggcWfvX9qrKpargeoOs5g0S9gsvdwNPJxtMd9TGin4zw6JZBjFHfK4F4aTT3ABAvKxkujIzkNBfVXykK2uG6jQTSvyCe06z0CZdVAUhNMKH2H9-cGJB_wPjQ2e9xyYS2hhnGR1ycLlwryUmllcDRpFPg2vmRkFpkqfLE" />
+                                <div class="flex flex-col">
+                                    <span class="font-semibold text-on-surface line-clamp-1">10 Best Practices for
+                                        Scaling Database Infrastructure</span>
+                                    <span class="text-body-sm text-emerald-600 font-semibold italic">Needs review before
+                                        publishing</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-body-md">RSS: TechCrunch</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span
+                                class="bg-emerald-50 text-emerald-600 px-2 py-1 rounded text-[11px] font-bold uppercase tracking-wider">Auto-fetched</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                                <span class="text-body-sm text-amber-700 font-semibold">Pending</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="font-code text-slate-600">--</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex justify-end gap-2">
+                                <button
+                                    class="px-3 py-1 bg-emerald-600 text-white rounded text-body-sm font-bold hover:bg-emerald-700 transition-colors">Approve</button>
+                                <button
+                                    class="p-1.5 hover:bg-slate-100 rounded text-slate-400 hover:text-primary transition-colors"><span
+                                        class="material-symbols-outlined text-[18px]">edit</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Row 3: Manual -->
+                    <tr class="hover:bg-slate-50/50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-4">
+                                <img class="w-16 h-10 object-cover rounded-lg border border-slate-200"
+                                    data-alt="vibrant colorful data visualization charts and graphs on a dark background showing business growth and trends"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3SaQgtTX3TVyzTi4mehTg30F4vVzj7hRxSKSFZ-GfzoHnEFL7xNgrJaOOY3LuQr_UtHtudaqoPzOESs4VqmYF3B7BGyEbQrt1XbxMW8OjxK4_SYHYsP7H_zE7XNJCsGUd8vWAneqDlrX0fIsch5tDUFA7PX8OkDKEqM_DxdEctRmVYTIGn5HTjr5hJopHtAEA8nm6E_KdfIbiv_qSqP1-QmzMWlPIyOEfTSTi-QZIqCbBH0XuEhrcQTLP7p5QcIV3tLrkE-ycmtE" />
+                                <div class="flex flex-col">
+                                    <span class="font-semibold text-on-surface line-clamp-1">ListIQ Monthly Update: New
+                                        Analytics Core is Live</span>
+                                    <span class="text-body-sm text-on-surface-variant">Published 2 days ago</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2">
+                                <img class="w-6 h-6 rounded-full border border-slate-200"
+                                    data-alt="headshot of a smiling woman with glasses in a professional studio setting with soft warm lighting"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7-OJMKwkp2J1GqjIZ8kOyKqIhXjk4CkK0AVEVO8DI4Mygen-nEyzymsI0GfyuTsCJETfl6_Vba5ICV88gVrtdc8jfkcP1V9YF87DLkBtROlA-qnpZa6yxdEDLxEb-016IFzWDQDoTWLfhmwfjqc2Cw2KkeYq73eYPxgiYAKd-Lk6jDhmhg413eSDdYapcRxDjSHmIe3yJaOfYjm202K-4vnZ_pyu89teugrXE2h9PlKrVXJAGeknJky4mrqj590M87329gkqEcEQ" />
+                                <span class="text-body-md">Sarah Chen</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span
+                                class="bg-slate-100 text-slate-600 px-2 py-1 rounded text-[11px] font-bold uppercase tracking-wider">Manual</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                                <span class="text-body-sm text-emerald-700 font-semibold">Published</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="font-code text-slate-600">4,120</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex justify-end gap-2">
+                                <button
+                                    class="p-1.5 hover:bg-slate-100 rounded text-slate-400 hover:text-primary transition-colors"><span
+                                        class="material-symbols-outlined text-[18px]">visibility</span></button>
+                                <button
+                                    class="p-1.5 hover:bg-slate-100 rounded text-slate-400 hover:text-primary transition-colors"><span
+                                        class="material-symbols-outlined text-[18px]">edit</span></button>
+                                <button
+                                    class="p-1.5 hover:bg-slate-100 rounded text-slate-400 hover:text-rose-500 transition-colors"><span
+                                        class="material-symbols-outlined text-[18px]">delete</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Row 4: Draft -->
+                    <tr class="hover:bg-slate-50/50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-16 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400">
+                                    <span class="material-symbols-outlined">image</span>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="font-semibold text-on-surface line-clamp-1">Maximizing Remote Team
+                                        Efficiency: A Guide</span>
+                                    <span class="text-body-sm text-on-surface-variant">Last saved 15m ago</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2">
+                                <img class="w-6 h-6 rounded-full border border-slate-200"
+                                    data-alt="professional portrait of a man with a friendly expression in a modern creative workspace"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMOMKObww_5OBPe1iI0GGsUbmjPpYxBBvYABiduzuMavZm9vwN3PpKVsN9hvL2MpKUeFpQ-LRQejbK74RfRFsZbEwvLvD4l9MZ-bxb-FfCh6Qnq9T2ZcbgAtMWqv1g08Zrm-22wqE8XcmN7zrIWXvVhFY3F4Rmmht7oFV_vHCCmceg9uUFTsEQ53GiDkl77Z2NRq3o0VnU038XOicx4ZAn7i7WmMimUWGVFL1ApdUk00aotGBb-jdVd3OJgYrNy1Bxvn9Yzincosw" />
+                                <span class="text-body-md">Marcus Thorne</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span
+                                class="bg-slate-100 text-slate-600 px-2 py-1 rounded text-[11px] font-bold uppercase tracking-wider">Manual</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2 h-2 bg-slate-300 rounded-full"></span>
+                                <span class="text-body-sm text-slate-500 font-semibold">Draft</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="font-code text-slate-600">0</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex justify-end gap-2">
+                                <button
+                                    class="p-1.5 hover:bg-slate-100 rounded text-slate-400 hover:text-primary transition-colors"><span
+                                        class="material-symbols-outlined text-[18px]">edit</span></button>
+                                <button
+                                    class="p-1.5 hover:bg-slate-100 rounded text-slate-400 hover:text-rose-500 transition-colors"><span
+                                        class="material-symbols-outlined text-[18px]">delete</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+                <span class="text-body-sm text-on-surface-variant">Showing 1-10 of 1,324 articles</span>
+                <div class="flex gap-2">
+                    <button
+                        class="px-3 py-1 bg-white border border-slate-200 rounded text-body-sm hover:bg-slate-100 transition-colors">Previous</button>
+                    <button class="px-3 py-1 bg-primary text-white rounded text-body-sm font-bold">1</button>
+                    <button
+                        class="px-3 py-1 bg-white border border-slate-200 rounded text-body-sm hover:bg-slate-100 transition-colors">2</button>
+                    <button
+                        class="px-3 py-1 bg-white border border-slate-200 rounded text-body-sm hover:bg-slate-100 transition-colors">3</button>
+                    <span class="text-slate-400">...</span>
+                    <button
+                        class="px-3 py-1 bg-white border border-slate-200 rounded text-body-sm hover:bg-slate-100 transition-colors">132</button>
+                    <button
+                        class="px-3 py-1 bg-white border border-slate-200 rounded text-body-sm hover:bg-slate-100 transition-colors">Next</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Contextual FAB -->
+    <div class="fixed bottom-8 right-8 flex flex-col gap-3">
+        <button
+            class="w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
+            <span class="material-symbols-outlined text-[28px]">add</span>
+        </button>
+    </div>
+</body>
+
+</html>

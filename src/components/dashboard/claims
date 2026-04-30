@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#ededf9",
+                        "on-surface-variant": "#434655",
+                        "tertiary-container": "#bc4800",
+                        "surface-tint": "#0053db",
+                        "on-error": "#ffffff",
+                        "tertiary": "#943700",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-primary-fixed": "#00174b",
+                        "outline": "#737686",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-surface": "#191b23",
+                        "inverse-on-surface": "#f0f0fb",
+                        "surface-container-highest": "#e1e2ed",
+                        "surface-variant": "#e1e2ed",
+                        "on-tertiary-container": "#ffede6",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary": "#565e74",
+                        "on-secondary": "#ffffff",
+                        "primary": "#004ac6",
+                        "outline-variant": "#c3c6d7",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "secondary-container": "#dae2fd",
+                        "inverse-surface": "#2e3039",
+                        "on-secondary-fixed": "#131b2e",
+                        "inverse-primary": "#b4c5ff",
+                        "primary-container": "#2563eb",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#dbe1ff",
+                        "on-background": "#191b23",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f3f3fe",
+                        "surface-dim": "#d9d9e5",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-container": "#5c647a",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "background": "#faf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container-high": "#e7e7f3",
+                        "surface": "#faf8ff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-padding": "32px",
+                        "max-width": "1440px",
+                        "element-gap": "12px",
+                        "grid-columns": "12",
+                        "card-gap": "24px"
+                    },
+                    "fontFamily": {
+                        "display-stat": ["Plus Jakarta Sans"],
+                        "label-caps": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "code": ["JetBrains Mono"],
+                        "body-sm": ["Manrope"],
+                        "h2": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-stat": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "code": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "h2": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F8FAFC;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .claim-table-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-on-surface antialiased">
+    <!-- TopNavBar (JSON Mapping) -->
+    <header class="bg-[#0F172A] border-b border-slate-800 fixed top-0 left-0 right-0 z-50">
+        <div class="flex justify-between items-center w-full px-6 h-16 max-w-[1440px] mx-auto">
+            <div class="flex items-center gap-8">
+                <span class="text-xl font-bold text-white tracking-tight">ListIQ</span>
+                <nav class="hidden md:flex gap-6 h-16 items-center">
+                    <a class="font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight text-slate-400 pb-4 mt-4 hover:text-white transition-colors duration-200 cursor-pointer active:opacity-80"
+                        href="#">Dashboard</a>
+                    <a class="font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight text-white border-b-2 border-blue-500 pb-4 mt-4 cursor-pointer active:opacity-80"
+                        href="#">Claims</a>
+                    <a class="font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight text-slate-400 pb-4 mt-4 hover:text-white transition-colors duration-200 cursor-pointer active:opacity-80"
+                        href="#">Policyholders</a>
+                    <a class="font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight text-slate-400 pb-4 mt-4 hover:text-white transition-colors duration-200 cursor-pointer active:opacity-80"
+                        href="#">Reports</a>
+                    <a class="font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight text-slate-400 pb-4 mt-4 hover:text-white transition-colors duration-200 cursor-pointer active:opacity-80"
+                        href="#">Settings</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4">
+                <div
+                    class="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-slate-800 rounded-lg text-slate-400 text-sm">
+                    <span class="material-symbols-outlined text-sm">search</span>
+                    <input
+                        class="bg-transparent border-none focus:ring-0 text-slate-200 placeholder-slate-500 text-xs w-48"
+                        placeholder="Search..." type="text" />
+                </div>
+                <button class="text-slate-400 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+                </button>
+                <div class="h-8 w-px bg-slate-800"></div>
+                <div class="flex items-center gap-3">
+                    <div class="flex flex-col items-end">
+                        <span class="text-white text-xs font-semibold">Admin User</span>
+                        <span
+                            class="bg-[#F43F5E] text-white font-['Manrope'] font-bold text-[11px] uppercase px-1.5 rounded-[2px] leading-tight mt-0.5">Admin</span>
+                    </div>
+                    <img alt="User avatar" class="h-8 w-8 rounded-full border border-slate-700"
+                        data-alt="professional headshot of a person with a friendly expression in clean office lighting"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW7tMEn3dFuO1p5ZP4acMvt1l55RdTyAlf0yrRNFyTlVWwb0sZl4YjfK_6vNNkK49RH1Vk-2sU6iSetOhv5EGFci_gks2bf7df-wlNckxjjDAnQUdk62I3fUiL2TxuuBh-f4E775NVJcZWU0O_zvSm5JmHdYfcggTeV6Icf0HaV9CAK2-AMyhEGWFjVT9vLi5n_34N1RcwIEzEZmko2ezDACdaf0iA8gReRO1l_bi96itvzUqSNZZRe-HtUIqa5S1YbpSSg6ADRVM" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Sidebar (JSON Mapping) -->
+    <aside
+        class="fixed left-0 top-16 bottom-0 w-64 bg-white border-r border-slate-200 flex flex-col py-6 z-40 hidden md:flex">
+        <div class="px-6 mb-8">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="h-10 w-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined">shield</span>
+                </div>
+                <div>
+                    <h2 class="text-lg font-black text-slate-900 leading-none">ListIQ Admin</h2>
+                    <p class="text-xs text-slate-500 mt-1">Enterprise Tier</p>
+                </div>
+            </div>
+            <button
+                class="w-full bg-primary-container text-white font-semibold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 hover:bg-primary transition-all shadow-lg shadow-blue-500/20 active:translate-y-px">
+                <span class="material-symbols-outlined text-lg">add</span>
+                New Claim
+            </button>
+        </div>
+        <nav class="flex-1 px-4 space-y-1">
+            <a class="flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-xl font-['Plus_Jakarta_Sans'] text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-all group"
+                href="#">
+                <span class="material-symbols-outlined text-slate-400 group-hover:text-primary"
+                    data-icon="dashboard">dashboard</span>
+                Overview
+            </a>
+            <a class="flex items-center gap-3 bg-slate-50 text-blue-600 px-4 py-2.5 rounded-xl font-['Plus_Jakarta_Sans'] text-sm font-semibold transition-all group active:translate-x-1"
+                href="#">
+                <span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+                Claims Pipeline
+            </a>
+            <a class="flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-xl font-['Plus_Jakarta_Sans'] text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-all group"
+                href="#">
+                <span class="material-symbols-outlined text-slate-400 group-hover:text-primary"
+                    data-icon="history">history</span>
+                Audit Logs
+            </a>
+            <a class="flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-xl font-['Plus_Jakarta_Sans'] text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-all group"
+                href="#">
+                <span class="material-symbols-outlined text-slate-400 group-hover:text-primary"
+                    data-icon="folder_open">folder_open</span>
+                Document Vault
+            </a>
+            <a class="flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-xl font-['Plus_Jakarta_Sans'] text-sm font-semibold hover:bg-slate-50 hover:text-slate-900 transition-all group"
+                href="#">
+                <span class="material-symbols-outlined text-slate-400 group-hover:text-primary"
+                    data-icon="admin_panel_settings">admin_panel_settings</span>
+                User Roles
+            </a>
+        </nav>
+        <div class="mt-auto px-4 border-t border-slate-100 pt-6">
+            <a class="flex items-center gap-3 text-slate-600 px-4 py-2.5 rounded-xl font-['Plus_Jakarta_Sans'] text-sm font-semibold hover:bg-rose-50 hover:text-rose-600 transition-all group"
+                href="#">
+                <span class="material-symbols-outlined text-slate-400 group-hover:text-rose-600"
+                    data-icon="logout">logout</span>
+                Log Out
+            </a>
+        </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="md:ml-64 pt-16 min-h-screen">
+        <div class="max-w-[1440px] mx-auto p-8">
+            <!-- Page Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+                <div>
+                    <nav class="flex items-center gap-2 mb-2">
+                        <span class="font-['Manrope'] text-xs text-slate-400">Dashboard</span>
+                        <span class="material-symbols-outlined text-xs text-slate-300">chevron_right</span>
+                        <span class="font-['Manrope'] text-xs text-primary font-semibold">Listing Claims</span>
+                    </nav>
+                    <h1 class="font-h1 text-h1 text-slate-900">Listing Claims</h1>
+                    <p class="font-body-md text-slate-500 mt-1">Review and process ownership claim requests</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button
+                        class="bg-white border border-slate-200 px-4 py-2 rounded-xl text-sm font-semibold text-slate-700 flex items-center gap-2 hover:bg-slate-50 transition-all">
+                        <span class="material-symbols-outlined text-lg">download</span>
+                        Export Report
+                    </button>
+                    <button
+                        class="bg-primary-container text-white px-4 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 hover:opacity-90 transition-all">
+                        <span class="material-symbols-outlined text-lg">file_upload</span>
+                        Bulk Upload
+                    </button>
+                </div>
+            </div>
+            <!-- Stats Bento -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white border border-slate-200 p-5 rounded-2xl flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <div class="p-2 bg-amber-50 text-amber-600 rounded-lg">
+                            <span class="material-symbols-outlined">pending_actions</span>
+                        </div>
+                        <span
+                            class="text-[11px] font-['Manrope'] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">+2
+                            from yesterday</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-['Manrope'] text-xs text-slate-500 uppercase tracking-wider font-semibold">
+                            Pending Claims</p>
+                        <h3 class="font-display-stat text-display-stat text-slate-900 mt-1">5</h3>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200 p-5 rounded-2xl flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <div class="p-2 bg-emerald-50 text-emerald-600 rounded-lg">
+                            <span class="material-symbols-outlined">check_circle</span>
+                        </div>
+                        <span
+                            class="text-[11px] font-['Manrope'] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">84%
+                            Success Rate</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-['Manrope'] text-xs text-slate-500 uppercase tracking-wider font-semibold">
+                            Approved this month</p>
+                        <h3 class="font-display-stat text-display-stat text-slate-900 mt-1">23</h3>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200 p-5 rounded-2xl flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <div class="p-2 bg-rose-50 text-rose-600 rounded-lg">
+                            <span class="material-symbols-outlined">cancel</span>
+                        </div>
+                        <span
+                            class="text-[11px] font-['Manrope'] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">-5%
+                            from last month</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-['Manrope'] text-xs text-slate-500 uppercase tracking-wider font-semibold">
+                            Rejected this month</p>
+                        <h3 class="font-display-stat text-display-stat text-slate-900 mt-1">8</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Filter Bar -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 mb-6 shadow-sm">
+                <div class="flex flex-col lg:flex-row gap-4">
+                    <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl w-fit">
+                        <button
+                            class="px-4 py-1.5 rounded-lg text-sm font-semibold bg-white shadow-sm text-slate-900">All</button>
+                        <button
+                            class="px-4 py-1.5 rounded-lg text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">Pending</button>
+                        <button
+                            class="px-4 py-1.5 rounded-lg text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">Approved</button>
+                        <button
+                            class="px-4 py-1.5 rounded-lg text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">Rejected</button>
+                    </div>
+                    <div class="flex-1 flex flex-col sm:flex-row gap-3">
+                        <div class="flex-1 relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+                            <input
+                                class="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-blue-100 focus:border-primary-container transition-all outline-none"
+                                placeholder="Search by business name or claimant..." type="text" />
+                        </div>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">calendar_today</span>
+                            <input
+                                class="w-full sm:w-56 bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-blue-100 focus:border-primary-container outline-none transition-all cursor-pointer"
+                                type="text" value="Oct 01 - Oct 31, 2023" />
+                        </div>
+                        <button
+                            class="bg-slate-50 border border-slate-200 text-slate-600 px-4 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 hover:bg-slate-100 transition-all">
+                            <span class="material-symbols-outlined text-lg">tune</span>
+                            Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Table Container -->
+            <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200">
+                                <th
+                                    class="px-6 py-4 font-['Manrope'] text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                    Listing</th>
+                                <th
+                                    class="px-6 py-4 font-['Manrope'] text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                    Claimant</th>
+                                <th
+                                    class="px-6 py-4 font-['Manrope'] text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                    Submitted</th>
+                                <th
+                                    class="px-6 py-4 font-['Manrope'] text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                    Proof Doc</th>
+                                <th
+                                    class="px-6 py-4 font-['Manrope'] text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                    Status</th>
+                                <th
+                                    class="px-6 py-4 font-['Manrope'] text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                    Reviewed By</th>
+                                <th
+                                    class="px-6 py-4 font-['Manrope'] text-xs font-bold text-slate-500 uppercase tracking-wider text-right">
+                                    Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <!-- Row 1: Pending -->
+                            <tr class="hover:bg-slate-50/80 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-lg bg-blue-100 overflow-hidden flex-shrink-0">
+                                            <img alt="Listing" class="w-full h-full object-cover"
+                                                data-alt="modern bistro interior with soft lighting and wooden furniture"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO9er__GAeKei_MyyzGfgTOaoc6XayJ1FovLMu45vfGojNxqSn1sSpSzNwMxo_i0Z21SgomfoMhMxkTGPFjuV6orRMAFst3X16vmEN9shnXxlx0pfP60uECCMV31UoPxSVYkWwViqqnpcsnDtlgiAdKSgejZ8EK_VVXfm_iiE_3oO5lnox1DnUFGFuKJVlbKcctC5mKCV-EEqbHVoXZtHx_vJ-xMZJElFmhrmecKJrt8-snmafrEDg6lZXUL-pMn7M8UK2einVXEg" />
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-slate-900">The Golden Griddle</span>
+                                            <span class="text-xs text-slate-500">San Francisco, CA</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div>
+                                        <span class="block font-medium text-slate-900">Sarah Jenkins</span>
+                                        <span class="text-xs text-slate-500">sarah.j@example.com</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-slate-600 text-sm">Oct 24, 2023</td>
+                                <td class="px-6 py-4">
+                                    <a class="text-primary-container text-sm font-semibold flex items-center gap-1 hover:underline"
+                                        href="#">
+                                        <span class="material-symbols-outlined text-sm">description</span>
+                                        View Doc
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold border border-amber-200">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                        Pending
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-slate-400 italic text-sm">Awaiting review</td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button
+                                            class="p-2 text-slate-400 hover:text-primary-container hover:bg-blue-50 rounded-lg transition-all"
+                                            title="Review">
+                                            <span class="material-symbols-outlined text-lg">visibility</span>
+                                        </button>
+                                        <button
+                                            class="p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-all"
+                                            title="Quick Approve">
+                                            <span class="material-symbols-outlined text-lg">check_circle</span>
+                                        </button>
+                                        <button
+                                            class="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all"
+                                            title="Quick Reject">
+                                            <span class="material-symbols-outlined text-lg">cancel</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- Row 2: Approved -->
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-lg bg-blue-100 overflow-hidden flex-shrink-0">
+                                            <img alt="Listing" class="w-full h-full object-cover"
+                                                data-alt="sleek corporate skyscraper facade reflecting blue sky"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdxICAvA3JAZsqY0Opi9GgpAXZkZE8WzAbNIRGI_AwoPFG0r8dBTjAIQwvK0IysJ9dngYTPqDW0x02fZDK_QFn2vAxW7TCpEdx2MTn18K1uSL5-9R9mkug-w3A5h9nzruDGpQrAx2oXEAOulzxFrtVzJ_2xGcN2PjAQ08wAdIVStFFUaIgdUBFZc83c68fjqpzS1-3mL6qUa7UfS-TSv8vopGLf3-ZgnDD3GQ0csOeWC8zH_RhGD-C5oLhdMFEI2ySBYtnvVMO5K8" />
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-slate-900">Apex Tech Hub</span>
+                                            <span class="text-xs text-slate-500">Austin, TX</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div>
+                                        <span class="block font-medium text-slate-900">Marcus Thorne</span>
+                                        <span class="text-xs text-slate-500">m.thorne@apex.io</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-slate-600 text-sm">Oct 18, 2023</td>
+                                <td class="px-6 py-4">
+                                    <a class="text-primary-container text-sm font-semibold flex items-center gap-1 hover:underline"
+                                        href="#">
+                                        <span class="material-symbols-outlined text-sm">description</span>
+                                        View Doc
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        Approved
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <img class="h-5 w-5 rounded-full" data-alt="professional male profile avatar"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb1-bMUiiZ7K06VxJsZ-8nL-CzSFLQcxoL1d7dwrKTsBYv5Vwb-lBKv-UAlplY5FVIOm9c_Qe54YIDZq5_CrgE5UHpHbtZomE44_0eirh0P8NLk0qKwwGHhke1RQDwdE6reT4037ICoffJzwVjM6HIknU7cyBbuoqlt61bpwQyy5QMNCUcodezGIlzTsoBUl1CypqGe8JyI8lRC9ZZvOGkIJZmo5xXD5ld6DJiuiC68xie5h6TVLek58jRQVniBfa65AsIK4S-6Y4" />
+                                        <span class="text-sm text-slate-700 font-medium">David K.</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-slate-400 hover:text-slate-900 p-2">
+                                        <span class="material-symbols-outlined text-lg">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 3: Rejected -->
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-lg bg-blue-100 overflow-hidden flex-shrink-0">
+                                            <img alt="Listing" class="w-full h-full object-cover"
+                                                data-alt="boutique hotel room with plush bedding and designer lighting"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvV4-7VWpcPxqhjFYEPddvdbSw99lQCiQ65hlv8vozTwZlmcBCcnBG6J4wIxAsjiJ_gieyXTtXsMTYVzvDbHMQTYwRggqLfxXu6g-vHuylfQGC-D2TnkYEFqEI6a0RVBoaccV-Op8UCpkisMax0rhbo63kPzlAVdtBpXUPLK4z-ESbC1BuluUSqSUzcUIMz0_xJZTuAuJ_L9LYc1WB302BgrIdGdrVj_RZP0hAA38fZ4FHbtL--Q1il8LiPLyFYo96fPl62Dy06N8" />
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-slate-900">Vista Boutique Hotel</span>
+                                            <span class="text-xs text-slate-500">Miami, FL</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div>
+                                        <span class="block font-medium text-slate-900">Alina Rose</span>
+                                        <span class="text-xs text-slate-500">alina@vista.com</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-slate-600 text-sm">Oct 12, 2023</td>
+                                <td class="px-6 py-4">
+                                    <a class="text-primary-container text-sm font-semibold flex items-center gap-1 hover:underline"
+                                        href="#">
+                                        <span class="material-symbols-outlined text-sm">description</span>
+                                        View Doc
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 text-xs font-bold border border-rose-200">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                                        Rejected
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+                                        <img class="h-5 w-5 rounded-full" data-alt="professional female profile avatar"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3_gNv4n3C-Yhsw9fEFtad1iQzRlu_Fn7NhslLG9WUuqOPZ9RBzwV0z6ATKsHBcjv5jzAnWgHyZYLgjE_MizAZ7--ZyUJtayARzo6t03RTaUEqAzpNm08D1JwVD3k2JD-er07mdGe4PhVMq8bmkq5tzrJ-lHLa1eICV3r-ygvWj02uKe7tG8m-2geDBcFxVZWPdBTSjVbY03SpktU8u4iI09TJkauFyPik28qQ8h1UnC98NEAPFakELTnVMlvTDNdPsLsVMuwFbYs" />
+                                        <span class="text-sm text-slate-700 font-medium">Sarah L.</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <button class="text-slate-400 hover:text-slate-900 p-2">
+                                        <span class="material-symbols-outlined text-lg">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 4: Pending High Density -->
+                            <tr
+                                class="bg-amber-50/20 hover:bg-amber-50/40 border-l-4 border-l-amber-400 transition-colors">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-lg bg-blue-100 overflow-hidden flex-shrink-0">
+                                            <img alt="Listing" class="w-full h-full object-cover"
+                                                data-alt="cozy cafe with shelves of books and coffee equipment"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZT6jMxNzJihxr3DIQvy19wZ96D0r0IEA1zwNS6PL7EpPJNX6FA6Tvcr00_HfbZU_vNxElUaSGQBVQN_yV1_nTyZIkF31hVuUT3uEn8DD7Q5gC5O0cCV6LwSL1MHoQLETI8X_hJoIw_yzefwkuNTY6sEdZmqIXdAUa70PoTS4MJB1HzCr_veRgkhL9dVsXuQX9C6amw6d0HV5FR02pYBjTqEvTN9htRt1Ozc9kJ9dF_NjQbLLXHUEjodbTrNayJmj-X2NlfCUVFQ8" />
+                                        </div>
+                                        <div>
+                                            <span class="block font-semibold text-slate-900">The Brew &amp; Book</span>
+                                            <span class="text-xs text-slate-500">Seattle, WA</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div>
+                                        <span class="block font-medium text-slate-900">Gregory Park</span>
+                                        <span class="text-xs text-slate-500">g.park@outlook.com</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-slate-600 text-sm">Oct 26, 2023</td>
+                                <td class="px-6 py-4">
+                                    <a class="text-primary-container text-sm font-semibold flex items-center gap-1 hover:underline"
+                                        href="#">
+                                        <span class="material-symbols-outlined text-sm">description</span>
+                                        View Doc
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold border border-amber-200">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                        Pending
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-slate-400 italic text-sm">Awaiting review</td>
+                                <td class="px-6 py-4 text-right">
+                                    <div
+                                        class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 lg:opacity-100 transition-opacity">
+                                        <button
+                                            class="bg-white border border-slate-200 px-3 py-1 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-50 transition-all">Review</button>
+                                        <button
+                                            class="bg-emerald-600 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-emerald-700 transition-all">Quick
+                                            Approve</button>
+                                        <button
+                                            class="bg-rose-600 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-rose-700 transition-all">Quick
+                                            Reject</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-slate-50 px-6 py-4 border-t border-slate-200 flex items-center justify-between">
+                    <span class="text-xs font-['Manrope'] font-semibold text-slate-500">Showing 1 to 4 of 36
+                        results</span>
+                    <div class="flex gap-1">
+                        <button
+                            class="p-1.5 rounded-lg border border-slate-200 text-slate-400 hover:bg-white hover:text-slate-900 transition-all">
+                            <span class="material-symbols-outlined text-sm">chevron_left</span>
+                        </button>
+                        <button
+                            class="px-3 py-1 rounded-lg bg-white border border-primary-container text-primary-container text-xs font-bold">1</button>
+                        <button
+                            class="px-3 py-1 rounded-lg border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-white">2</button>
+                        <button
+                            class="px-3 py-1 rounded-lg border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-white">3</button>
+                        <button
+                            class="p-1.5 rounded-lg border border-slate-200 text-slate-400 hover:bg-white hover:text-slate-900 transition-all">
+                            <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Mobile Bottom Navigation Shell -->
+    <footer
+        class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-6 h-16 flex justify-between items-center z-50">
+        <button class="flex flex-col items-center gap-1 text-slate-400">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-[10px] font-bold">Dash</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 text-primary-container">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment</span>
+            <span class="text-[10px] font-bold">Claims</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 text-slate-400">
+            <span class="material-symbols-outlined">group</span>
+            <span class="text-[10px] font-bold">Users</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 text-slate-400">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="text-[10px] font-bold">Settings</span>
+        </button>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700;800&amp;family=JetBrains+Mono&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#dae2fd",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-variant": "#e1e2ed",
+                        "on-background": "#191b23",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "outline-variant": "#c3c6d7",
+                        "surface-dim": "#d9d9e5",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#ededf9",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#943700",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-container-low": "#f3f3fe",
+                        "inverse-surface": "#2e3039",
+                        "on-secondary-container": "#5c647a",
+                        "on-primary-container": "#eeefff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "primary-container": "#2563eb",
+                        "surface": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "primary": "#004ac6",
+                        "surface-tint": "#0053db",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e7e7f3",
+                        "on-surface": "#191b23",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-container": "#ffede6",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "inverse-on-surface": "#f0f0fb",
+                        "tertiary-container": "#bc4800",
+                        "inverse-primary": "#b4c5ff",
+                        "outline": "#737686",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary": "#565e74",
+                        "on-secondary-fixed": "#131b2e",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container-highest": "#e1e2ed",
+                        "on-surface-variant": "#434655",
+                        "background": "#faf8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "element-gap": "12px",
+                        "max-width": "1440px",
+                        "grid-columns": "12",
+                        "card-gap": "24px",
+                        "unit": "4px",
+                        "container-padding": "32px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "display-stat": ["Plus Jakarta Sans"],
+                        "code": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "h2": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-stat": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "code": ["13px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background text-on-surface font-body-md">
+    <!-- TopNavBar -->
+    <header class="bg-slate-950 dark:bg-black border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
+        <div class="flex flex-col w-full px-6 max-w-[1440px] mx-auto h-24 justify-center">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <span class="text-xl font-black text-white tracking-tighter">ListIQ</span>
+                    <nav class="hidden md:flex items-center gap-6 font-['Plus_Jakarta_Sans'] text-sm tracking-tight">
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+                            href="#">Overview</a>
+                        <a class="text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 font-bold pb-2"
+                            href="#">Listings</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+                            href="#">Users</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+                            href="#">Claims</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+                            href="#">Articles</a>
+                        <a class="text-slate-500 dark:text-slate-400 font-medium hover:text-slate-900 dark:hover:text-slate-100 transition-colors duration-200"
+                            href="#">Settings</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined text-slate-400 hover:text-white cursor-pointer transition-colors duration-200">notifications</span>
+                        <span
+                            class="absolute top-0 right-0 w-2 h-2 bg-rose-500 rounded-full border-2 border-slate-950"></span>
+                    </div>
+                    <div class="flex items-center gap-3 pl-4 border-l border-slate-800">
+                        <div class="text-right">
+                            <p class="text-white text-[13px] font-bold leading-none">Admin</p>
+                            <span
+                                class="bg-rose-500 text-white font-['Manrope'] font-bold text-[11px] uppercase px-1.5 py-0.5 rounded-sm mt-1 inline-block">ADMIN</span>
+                        </div>
+                        <img alt="Admin avatar" class="w-10 h-10 rounded-xl object-cover border border-slate-800"
+                            data-alt="portrait of a professional executive man with a friendly smile in a corporate studio setting"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIuvA0M7K3QJjKHCcnFe1dOzZbaqzYJ8iPYsofG4ZzYJ3-Dn2PnmRtgcxlLmG6NFMcwP_8GJS3rfa5J5mr87zvoK0VJ39fqFtjedtGt8yLOGxHvWTdkhBmxPgYIBKsw3kIXlNanE-oOu3P5ZBSY3m-LkVHK6ivsZJ-GBVrjlOnbuvL2LWLXUvu3Wzczt01cru04ssmPvS2JmPLTT31CkyZb_Eis0v9vSVXYhDkKtf9pqUdRx2v-HxtVS8S6M0ppF5Z3Cht6YoB9gg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-[1440px] mx-auto px-6 py-8">
+        <!-- Header & Breadcrumbs -->
+        <div class="mb-8">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="font-['Manrope'] text-body-sm text-slate-500">Dashboard</span>
+                <span class="material-symbols-outlined text-slate-400 text-sm">chevron_right</span>
+                <span class="font-['Manrope'] text-body-sm text-primary font-semibold">Listings Management</span>
+            </div>
+            <div class="flex items-end justify-between">
+                <div>
+                    <h1 class="font-h1 text-h1 text-on-surface">Listings</h1>
+                    <p class="text-slate-500 mt-1">Manage all business listings on the platform</p>
+                </div>
+                <button
+                    class="bg-primary-container text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined">add</span>
+                    Add Listing
+                </button>
+            </div>
+        </div>
+        <!-- Stats Chips Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-card-gap mb-8">
+            <div class="bg-white border border-outline-variant p-5 rounded-xl">
+                <p class="text-label-caps text-slate-500 mb-2 uppercase">TOTAL LISTINGS</p>
+                <div class="flex items-center justify-between">
+                    <span class="font-display-stat text-display-stat">12,842</span>
+                    <span class="text-emerald-600 bg-emerald-50 text-[12px] font-bold px-2 py-1 rounded-lg">+12%</span>
+                </div>
+            </div>
+            <div class="bg-white border border-outline-variant p-5 rounded-xl">
+                <p class="text-label-caps text-slate-500 mb-2 uppercase">ACTIVE</p>
+                <div class="flex items-center justify-between">
+                    <span class="font-display-stat text-display-stat">10,120</span>
+                    <span class="material-symbols-outlined text-emerald-500">check_circle</span>
+                </div>
+            </div>
+            <div class="bg-white border border-outline-variant p-5 rounded-xl">
+                <p class="text-label-caps text-slate-500 mb-2 uppercase">PENDING</p>
+                <div class="flex items-center justify-between">
+                    <span class="font-display-stat text-display-stat">428</span>
+                    <span class="material-symbols-outlined text-amber-500">pending</span>
+                </div>
+            </div>
+            <div class="bg-white border border-outline-variant p-5 rounded-xl">
+                <p class="text-label-caps text-slate-500 mb-2 uppercase">REJECTED</p>
+                <div class="flex items-center justify-between">
+                    <span class="font-display-stat text-display-stat">92</span>
+                    <span class="material-symbols-outlined text-rose-500">cancel</span>
+                </div>
+            </div>
+            <div class="bg-white border border-outline-variant p-5 rounded-xl">
+                <p class="text-label-caps text-slate-500 mb-2 uppercase">PREMIUM PLANS</p>
+                <div class="flex items-center justify-between">
+                    <span class="font-display-stat text-display-stat">3,490</span>
+                    <span class="material-symbols-outlined text-primary">diamond</span>
+                </div>
+            </div>
+        </div>
+        <!-- Action Bar -->
+        <div class="bg-white border border-outline-variant rounded-xl mb-6 overflow-hidden">
+            <div class="p-4 flex flex-wrap items-center gap-4">
+                <div class="flex-1 min-w-[300px] relative">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input
+                        class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary-container outline-none text-body-md"
+                        placeholder="Search by name, ID, or owner..." type="text" />
+                </div>
+                <div class="flex items-center gap-2">
+                    <select
+                        class="border border-outline-variant rounded-xl px-3 py-2 text-body-sm bg-white outline-none focus:border-primary">
+                        <option>All Status</option>
+                        <option>Active</option>
+                        <option>Pending</option>
+                        <option>Suspended</option>
+                    </select>
+                    <select
+                        class="border border-outline-variant rounded-xl px-3 py-2 text-body-sm bg-white outline-none focus:border-primary">
+                        <option>All Categories</option>
+                        <option>Technology</option>
+                        <option>Retail</option>
+                        <option>Finance</option>
+                    </select>
+                    <select
+                        class="border border-outline-variant rounded-xl px-3 py-2 text-body-sm bg-white outline-none focus:border-primary">
+                        <option>All Plans</option>
+                        <option>Free</option>
+                        <option>Pro</option>
+                        <option>Enterprise</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-4 px-4 border-l border-slate-200">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <div class="relative w-10 h-6 bg-slate-200 rounded-full transition-colors">
+                            <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform"></div>
+                        </div>
+                        <span class="text-body-sm font-medium">Verified</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <div class="relative w-10 h-6 bg-blue-600 rounded-full">
+                            <div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
+                        </div>
+                        <span class="text-body-sm font-medium">Featured</span>
+                    </label>
+                </div>
+                <button
+                    class="flex items-center gap-2 px-4 py-2 text-slate-600 font-medium hover:bg-slate-50 rounded-xl transition-colors">
+                    <span class="material-symbols-outlined text-xl">file_download</span>
+                    Export CSV
+                </button>
+            </div>
+            <!-- Bulk Action Bar (Static Simulation) -->
+            <div class="bg-blue-50 border-t border-blue-100 p-3 px-6 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <span class="text-primary font-bold text-body-sm">12 rows selected</span>
+                    <div class="flex items-center gap-2">
+                        <button
+                            class="bg-white border border-blue-200 text-primary px-3 py-1.5 rounded-lg text-body-sm font-bold hover:bg-blue-100 transition-colors">Approve
+                            Selected</button>
+                        <button
+                            class="bg-white border border-blue-200 text-rose-600 px-3 py-1.5 rounded-lg text-body-sm font-bold hover:bg-rose-50 transition-colors">Reject
+                            Selected</button>
+                        <button
+                            class="bg-white border border-blue-200 text-slate-600 px-3 py-1.5 rounded-lg text-body-sm font-bold hover:bg-slate-100 transition-colors">Bulk
+                            Tag</button>
+                    </div>
+                </div>
+                <button class="text-slate-400 hover:text-slate-600">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <!-- Table Container -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-slate-50 border-b border-outline-variant">
+                        <tr>
+                            <th class="p-4 px-6 w-10">
+                                <input
+                                    class="rounded border-slate-300 text-primary-container focus:ring-primary-container"
+                                    type="checkbox" />
+                            </th>
+                            <th class="p-4 text-label-caps text-slate-500">BUSINESS</th>
+                            <th class="p-4 text-label-caps text-slate-500">CATEGORY</th>
+                            <th class="p-4 text-label-caps text-slate-500">CITY</th>
+                            <th class="p-4 text-label-caps text-slate-500">STATUS</th>
+                            <th class="p-4 text-label-caps text-slate-500">PLAN</th>
+                            <th class="p-4 text-label-caps text-slate-500 text-center">METRICS</th>
+                            <th class="p-4 text-label-caps text-slate-500 text-center">BADGES</th>
+                            <th class="p-4 text-label-caps text-slate-500">OWNER</th>
+                            <th class="p-4 text-label-caps text-slate-500"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <!-- Pending Row -->
+                        <tr class="hover:bg-slate-50/50 border-l-4 border-amber-500">
+                            <td class="p-4 px-6">
+                                <input
+                                    class="rounded border-slate-300 text-primary-container focus:ring-primary-container"
+                                    type="checkbox" />
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-primary font-bold">
+                                        NV</div>
+                                    <div>
+                                        <p class="font-bold text-slate-900 leading-none mb-1">Nova Systems</p>
+                                        <p class="text-[12px] text-slate-500">ID: #92011</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <span
+                                    class="bg-slate-100 text-slate-600 px-2 py-1 rounded text-[11px] font-bold">SOFTWARE</span>
+                            </td>
+                            <td class="p-4 text-body-sm text-slate-600 font-medium">San Francisco</td>
+                            <td class="p-4">
+                                <span
+                                    class="inline-flex items-center gap-1 bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full text-[11px] font-bold border border-amber-200">
+                                    <span class="w-1.5 h-1.5 bg-amber-500 rounded-full"></span>
+                                    PENDING
+                                </span>
+                            </td>
+                            <td class="p-4">
+                                <span
+                                    class="bg-primary-fixed-dim text-primary px-2 py-0.5 rounded text-[11px] font-bold">ENTERPRISE</span>
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-4">
+                                    <div class="text-center">
+                                        <p class="text-[11px] text-slate-400 leading-none">VIEWS</p>
+                                        <p class="font-bold text-body-sm">1.2k</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-[11px] text-slate-400 leading-none">REVS</p>
+                                        <p class="font-bold text-body-sm">48</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-slate-300 text-xl">verified</span>
+                                    <span class="material-symbols-outlined text-slate-300 text-xl">star</span>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center gap-2">
+                                    <img alt="User" class="w-6 h-6 rounded-full object-cover"
+                                        data-alt="portrait of a young startup founder in a casual grey hoodie against a soft neutral background"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqpDgiWxJ_4k2C_iVF3GlUCqNN-kGUBOwxUX3OjEBi1G5YOpdvAAwyiBHO5Sq9DnAZ31JSRLZ7S0nde7kAeAORCS9_vjihiLkejPQFSrlMA4bLTGjhoMwdoazN12eQzK4SlspumUCpIzQn6eOHgGLpO0K-FRDWI86kaznnyfR0kAvzxjenQ9ftrxj6C4jxZC2-mvufAKsAhfPKznWmngOdsff5CYda6g2Njse9DSdr-0nYbPvltQ-rX2KaXuHVQ7BINA_oBDIYSAA" />
+                                    <span class="text-body-sm font-medium">Alex Rivera</span>
+                                </div>
+                            </td>
+                            <td class="p-4 text-right">
+                                <button class="p-2 hover:bg-white rounded-lg text-slate-400">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Standard Row -->
+                        <tr class="hover:bg-slate-50/50">
+                            <td class="p-4 px-6">
+                                <input checked=""
+                                    class="rounded border-slate-300 text-primary-container focus:ring-primary-container"
+                                    type="checkbox" />
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center gap-3">
+                                    <img alt="Co-working" class="w-10 h-10 rounded-lg object-cover"
+                                        data-alt="minimalist logo for a modern coworking space featuring abstract geometric shapes in cobalt blue"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6-Gqo2Bz9a-RX3t_u8Sk8hHevwFyNxYEzeSOlEA2gjsXoi9M7sqclrXhLU-Q3eD04oMfSOib30wUzTz9ecGUy9PTHywj2FO70BwxkFN-H6ijuujxb7mxTAPEFttX-myVfiW5R0-bHr8BBCcvTpvbVb33idTPgbVxKBwV-Yiu43EVcwYP9yQ7SZVyOLj9Lhz15RjcjYB9fvubHIdWkOW92KoQITMFqFZ7qzxf9zxO8N5C0T1E15012WrT14hRy5Le83pNM5NnXcx0" />
+                                    <div>
+                                        <p class="font-bold text-slate-900 leading-none mb-1">Impact Hub</p>
+                                        <p class="text-[12px] text-slate-500">ID: #91982</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <span class="bg-slate-100 text-slate-600 px-2 py-1 rounded text-[11px] font-bold">REAL
+                                    ESTATE</span>
+                            </td>
+                            <td class="p-4 text-body-sm text-slate-600 font-medium">New York</td>
+                            <td class="p-4">
+                                <span
+                                    class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full text-[11px] font-bold border border-emerald-200">
+                                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+                                    ACTIVE
+                                </span>
+                            </td>
+                            <td class="p-4">
+                                <span
+                                    class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[11px] font-bold">PRO</span>
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-4">
+                                    <div class="text-center">
+                                        <p class="text-[11px] text-slate-400 leading-none">VIEWS</p>
+                                        <p class="font-bold text-body-sm">8.4k</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-[11px] text-slate-400 leading-none">REVS</p>
+                                        <p class="font-bold text-body-sm">112</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-blue-500 text-xl"
+                                        style="font-variation-settings: 'FILL' 1;">verified</span>
+                                    <span class="material-symbols-outlined text-amber-400 text-xl"
+                                        style="font-variation-settings: 'FILL' 1;">star</span>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center gap-2">
+                                    <img alt="User" class="w-6 h-6 rounded-full object-cover"
+                                        data-alt="professional woman in a smart blazer against a blurred office background"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0hbal5d9ql5VGlvqKgqxzg3WqKrbpZIbUR2-i8PuULQkqRJi4QnFL77azzduesIrfH-JLGcuXfCt6U2SP2fShGM-WRWHnoSUNQFgc224_NFUSoOwKhXgwzrQAmI7GDpE4WczQ433HCI6ER7RFNfClR_RhkwKlM2Oji5zHJDyKxsj7S2EtDqYQyy11wcVTiWBWwmG3V-wCUJA2RbRBQEuwYgVwaMdh8M-WmtsjZrRX4PTx6GXaNoFUm6ivPVVIalOiyBgtFpslq3k" />
+                                    <span class="text-body-sm font-medium">Sarah Jenkins</span>
+                                </div>
+                            </td>
+                            <td class="p-4 text-right">
+                                <button class="p-2 hover:bg-white rounded-lg text-slate-400">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- Rejected Row -->
+                        <tr class="hover:bg-slate-50/50 border-l-4 border-rose-500">
+                            <td class="p-4 px-6">
+                                <input
+                                    class="rounded border-slate-300 text-primary-container focus:ring-primary-container"
+                                    type="checkbox" />
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center gap-3 opacity-60">
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-slate-200 flex items-center justify-center text-slate-500 font-bold">
+                                        CF</div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-slate-900 leading-none mb-1 text-slate-500 line-through">
+                                            CryptoFlow</p>
+                                        <p class="text-[12px] text-slate-500">ID: #91883</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <span
+                                    class="bg-slate-100 text-slate-400 px-2 py-1 rounded text-[11px] font-bold">FINANCE</span>
+                            </td>
+                            <td class="p-4 text-body-sm text-slate-400 font-medium">Remote</td>
+                            <td class="p-4">
+                                <span
+                                    class="inline-flex items-center gap-1 bg-rose-50 text-rose-700 px-2 py-0.5 rounded-full text-[11px] font-bold border border-rose-200">
+                                    <span class="w-1.5 h-1.5 bg-rose-500 rounded-full"></span>
+                                    REJECTED
+                                </span>
+                            </td>
+                            <td class="p-4">
+                                <span
+                                    class="bg-slate-100 text-slate-400 px-2 py-0.5 rounded text-[11px] font-bold">FREE</span>
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-4 opacity-40">
+                                    <div class="text-center">
+                                        <p class="text-[11px] leading-none">VIEWS</p>
+                                        <p class="font-bold text-body-sm">0</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-[11px] leading-none">REVS</p>
+                                        <p class="font-bold text-body-sm">0</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center justify-center gap-2 opacity-20">
+                                    <span class="material-symbols-outlined text-slate-300 text-xl">verified</span>
+                                    <span class="material-symbols-outlined text-slate-300 text-xl">star</span>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <div class="flex items-center gap-2">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-slate-300 flex items-center justify-center text-[10px] text-white">
+                                        UK</div>
+                                    <span class="text-body-sm font-medium text-slate-400">Unknown</span>
+                                </div>
+                            </td>
+                            <td class="p-4 text-right">
+                                <button class="p-2 hover:bg-white rounded-lg text-slate-400">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pagination -->
+            <div class="p-4 px-6 border-t border-slate-100 flex items-center justify-between">
+                <p class="text-body-sm text-slate-500">Showing <span class="font-bold text-slate-900">1-10</span> of
+                    <span class="font-bold text-slate-900">12,842</span> results</p>
+                <div class="flex items-center gap-2">
+                    <button
+                        class="p-1 px-3 border border-outline-variant rounded-lg text-slate-500 hover:bg-slate-50 transition-colors">
+                        <span class="material-symbols-outlined align-middle text-xl">chevron_left</span>
+                    </button>
+                    <div class="flex items-center gap-1">
+                        <button
+                            class="w-8 h-8 rounded-lg bg-primary-container text-white text-body-sm font-bold">1</button>
+                        <button
+                            class="w-8 h-8 rounded-lg text-slate-600 hover:bg-slate-100 text-body-sm font-medium">2</button>
+                        <button
+                            class="w-8 h-8 rounded-lg text-slate-600 hover:bg-slate-100 text-body-sm font-medium">3</button>
+                        <span class="px-2 text-slate-400">...</span>
+                        <button
+                            class="w-8 h-8 rounded-lg text-slate-600 hover:bg-slate-100 text-body-sm font-medium">128</button>
+                    </div>
+                    <button
+                        class="p-1 px-3 border border-outline-variant rounded-lg text-slate-500 hover:bg-slate-50 transition-colors">
+                        <span class="material-symbols-outlined align-middle text-xl">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Floating Action Feedback (Optional Contextual Element) -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button
+            class="w-14 h-14 bg-primary rounded-full text-white shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all">
+            <span class="material-symbols-outlined text-2xl">support_agent</span>
+        </button>
+    </div>
+</body>
+
+</html>
