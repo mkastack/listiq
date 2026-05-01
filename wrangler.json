@@ -1,6 +1,7 @@
 {
+  "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "listiq",
-  "compatibility_date": "2025-09-24",
+  "compatibility_date": "2026-04-30",
   "compatibility_flags": [
     "nodejs_compat"
   ],
