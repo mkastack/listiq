@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider } from '@tanstack/react-router';
 import { getRouter } from './router';
 import './styles.css';
-
-// Use the existing router configuration to maintain error handling and context
 const router = getRouter();
 
 declare module '@tanstack/react-router' {
