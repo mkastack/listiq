@@ -4,6 +4,7 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "main": "src/worker.ts",
   "pages_build_output_dir": "dist/client",
   "observability": {
     "enabled": true

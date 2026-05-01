@@ -17,6 +17,9 @@ if (!fs.existsSync(serverEntry)) {
 }
 
 export default defineConfig({
+  cloudflare: {
+    viteEnvironment: { name: "ssr" }
+  },
   build: {
     chunkSizeWarningLimit: 1000,
     rollupOptions: {

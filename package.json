@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "prebuild": "node -e \"const fs=require('fs'); const dir='dist/server'; console.log('PREBUILD: Creating ' + dir); fs.mkdirSync(dir, {recursive:true}); fs.writeFileSync(dir + '/index.js', 'export default { fetch: () => {} };'); console.log('PREBUILD: Done')\"",
-    "build": "vite build",
+    "build": "node scripts/build.js",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
