@@ -13,7 +13,7 @@ if (!fs.existsSync(serverDir)) {
 const serverEntry = path.join(serverDir, 'index.js');
 console.log('[@listiq] Ensuring server entry exists:', serverEntry);
 if (!fs.existsSync(serverEntry)) {
-  fs.writeFileSync(serverEntry, '');
+  fs.writeFileSync(serverEntry, 'export default { fetch: () => {} };');
 }
 
 export default defineConfig({
