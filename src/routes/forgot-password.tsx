@@ -9,7 +9,7 @@ export const Route = createFileRoute("/forgot-password")({
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,9 +21,9 @@ function ForgotPassword() {
     });
 
     if (error) {
-      setMessage({ type: 'error', text: error.message });
+      setMessage({ type: "error", text: error.message });
     } else {
-      setMessage({ type: 'success', text: "Check your email for the password reset link." });
+      setMessage({ type: "success", text: "Check your email for the password reset link." });
     }
     setIsLoading(false);
   };
@@ -40,16 +40,24 @@ function ForgotPassword() {
           <div className="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-blue-600/20">
             <span className="material-symbols-outlined text-3xl">lock_open</span>
           </div>
-          <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Forgot password?</h1>
-          <p className="text-slate-500 font-medium">No worries, we'll send you reset instructions.</p>
+          <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-2">
+            Forgot password?
+          </h1>
+          <p className="text-slate-500 font-medium">
+            No worries, we'll send you reset instructions.
+          </p>
         </div>
 
         {message && (
-          <div className={`p-4 rounded-2xl mb-8 animate-in slide-in-from-top-2 duration-300 flex items-center gap-3 ${
-            message.type === 'success' ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' : 'bg-rose-50 text-rose-700 border border-rose-100'
-          }`}>
+          <div
+            className={`p-4 rounded-2xl mb-8 animate-in slide-in-from-top-2 duration-300 flex items-center gap-3 ${
+              message.type === "success"
+                ? "bg-emerald-50 text-emerald-700 border border-emerald-100"
+                : "bg-rose-50 text-rose-700 border border-rose-100"
+            }`}
+          >
             <span className="material-symbols-outlined text-xl">
-              {message.type === 'success' ? 'check_circle' : 'error'}
+              {message.type === "success" ? "check_circle" : "error"}
             </span>
             <p className="text-sm font-bold">{message.text}</p>
           </div>
@@ -57,10 +65,14 @@ function ForgotPassword() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <label className="text-[11px] font-black text-slate-900 uppercase tracking-widest ml-1">Email address</label>
+            <label className="text-[11px] font-black text-slate-900 uppercase tracking-widest ml-1">
+              Email address
+            </label>
             <div className="relative group">
-              <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors">mail</span>
-              <input 
+              <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors">
+                mail
+              </span>
+              <input
                 required
                 type="email"
                 value={email}
@@ -71,7 +83,7 @@ function ForgotPassword() {
             </div>
           </div>
 
-          <button 
+          <button
             type="submit"
             disabled={isLoading}
             className="w-full bg-slate-900 text-white py-4 rounded-2xl font-black text-sm hover:bg-slate-800 transition-all active:scale-[0.98] shadow-xl shadow-slate-900/10 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -88,12 +100,14 @@ function ForgotPassword() {
         </form>
 
         <div className="mt-10 text-center">
-          <Link 
-            to="/auth" 
-            search={{ mode: 'signin' }}
+          <Link
+            to="/auth"
+            search={{ mode: "signin" }}
             className="inline-flex items-center gap-2 text-slate-500 font-bold text-sm hover:text-slate-900 transition-colors group"
           >
-            <span className="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+            <span className="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">
+              arrow_back
+            </span>
             Back to login
           </Link>
         </div>

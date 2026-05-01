@@ -35,7 +35,9 @@ export function ListingCard({ l }: { l: ListingCardData }) {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/10 via-accent to-primary/5">
-            <span className="font-display text-3xl font-bold text-primary/40">{l.name.slice(0, 1)}</span>
+            <span className="font-display text-3xl font-bold text-primary/40">
+              {l.name.slice(0, 1)}
+            </span>
           </div>
         )}
         {l.is_featured && (
@@ -51,7 +53,9 @@ export function ListingCard({ l }: { l: ListingCardData }) {
               {l.name}
               {l.is_verified && <BadgeCheck className="h-4 w-4 text-primary" />}
             </h3>
-            <p className="mt-1 text-xs uppercase tracking-wide text-muted-foreground">{l.category.replace(/-/g, " ")}</p>
+            <p className="mt-1 text-xs uppercase tracking-wide text-muted-foreground">
+              {l.category.replace(/-/g, " ")}
+            </p>
           </div>
         </div>
         {l.short_description && (

@@ -80,7 +80,7 @@ export function AuthSignIn() {
                 />
               </div>
               <div className="text-center mt-4">
-                <Link 
+                <Link
                   to="/forgot-password"
                   className="text-sm font-medium text-foreground hover:text-primary transition-colors border-b border-transparent hover:border-primary"
                 >
@@ -108,9 +108,7 @@ export function AuthSignIn() {
             className="w-full md:w-1/2 p-12 flex flex-col justify-center items-center text-center text-brand-foreground relative overflow-hidden"
             style={{ background: "var(--gradient-hero)" }}
           >
-            <h2 className="text-5xl font-bold mb-6 relative z-10">
-              Hello, Friend!
-            </h2>
+            <h2 className="text-5xl font-bold mb-6 relative z-10">Hello, Friend!</h2>
             <p className="text-lg font-medium mb-12 max-w-[280px] relative z-10">
               Enter your personal details and start journey with us
             </p>

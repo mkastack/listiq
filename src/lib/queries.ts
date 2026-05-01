@@ -36,7 +36,9 @@ export type ListingRow = {
 export async function fetchFeaturedListings(limit = 6) {
   const { data, error } = await supabase
     .from("listings")
-    .select("id,slug,name,short_description,category,city,region,cover_image_url,logo_url,is_verified,is_featured,rating_avg,rating_count")
+    .select(
+      "id,slug,name,short_description,category,city,region,cover_image_url,logo_url,is_verified,is_featured,rating_avg,rating_count",
+    )
     .eq("status", "active")
     .eq("is_featured", true)
     .order("rating_avg", { ascending: false })
@@ -48,7 +50,9 @@ export async function fetchFeaturedListings(limit = 6) {
 export async function fetchRecentListings(limit = 8) {
   const { data, error } = await supabase
     .from("listings")
-    .select("id,slug,name,short_description,category,city,region,cover_image_url,logo_url,is_verified,is_featured,rating_avg,rating_count")
+    .select(
+      "id,slug,name,short_description,category,city,region,cover_image_url,logo_url,is_verified,is_featured,rating_avg,rating_count",
+    )
     .eq("status", "active")
     .order("created_at", { ascending: false })
     .limit(limit);
@@ -95,13 +99,18 @@ export type SearchFilters = {
 export async function searchListings(f: SearchFilters) {
   let query = supabase
     .from("listings")
-    .select("id,slug,name,short_description,category,city,region,cover_image_url,logo_url,is_verified,is_featured,rating_avg,rating_count")
+    .select(
+      "id,slug,name,short_description,category,city,region,cover_image_url,logo_url,is_verified,is_featured,rating_avg,rating_count",
+    )
     .eq("status", "active");
 
   if (f.category) query = query.eq("category", f.category);
   if (f.city) query = query.ilike("city", `%${f.city}%`);
   if (f.verifiedOnly) query = query.eq("is_verified", true);
-  if (f.q) query = query.or(`name.ilike.%${f.q}%,description.ilike.%${f.q}%,short_description.ilike.%${f.q}%`);
+  if (f.q)
+    query = query.or(
+      `name.ilike.%${f.q}%,description.ilike.%${f.q}%,short_description.ilike.%${f.q}%`,
+    );
 
   switch (f.sort) {
     case "rating":
@@ -114,7 +123,9 @@ export async function searchListings(f: SearchFilters) {
       query = query.order("created_at", { ascending: false });
       break;
     default:
-      query = query.order("is_featured", { ascending: false }).order("rating_avg", { ascending: false });
+      query = query
+        .order("is_featured", { ascending: false })
+        .order("rating_avg", { ascending: false });
   }
 
   const { data, error } = await query.limit(60);
@@ -136,7 +147,9 @@ export async function fetchListingBySlug(slug: string) {
 export async function fetchSimilarListings(category: string, excludeSlug: string, limit = 6) {
   const { data, error } = await supabase
     .from("listings")
-    .select("id,slug,name,short_description,category,city,region,cover_image_url,logo_url,is_verified,is_featured,rating_avg,rating_count")
+    .select(
+      "id,slug,name,short_description,category,city,region,cover_image_url,logo_url,is_verified,is_featured,rating_avg,rating_count",
+    )
     .eq("status", "active")
     .eq("category", category)
     .neq("slug", excludeSlug)
@@ -155,7 +168,13 @@ export async function fetchReviews(listingId: string) {
   return data ?? [];
 }
 
-export async function addReview(listingId: string, userId: string, rating: number, title: string, body: string) {
+export async function addReview(
+  listingId: string,
+  userId: string,
+  rating: number,
+  title: string,
+  body: string,
+) {
   const { data, error } = await supabase
     .from("reviews")
     .insert({
@@ -163,7 +182,7 @@ export async function addReview(listingId: string, userId: string, rating: numbe
       user_id: userId,
       rating,
       title,
-      body
+      body,
     })
     .select()
     .single();

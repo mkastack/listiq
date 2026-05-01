@@ -1,7 +1,7 @@
 import { getEnv } from "./utils";
 
 export async function generateArticleAI(prompt: string) {
-  const apiKey = getEnv('VITE_OPENAI_API_KEY') || getEnv('OPENAI_API_KEY');
+  const apiKey = getEnv("VITE_OPENAI_API_KEY") || getEnv("OPENAI_API_KEY");
   if (!apiKey) {
     throw new Error("OpenAI API key not found in environment variables.");
   }
@@ -40,13 +40,13 @@ export async function generateArticleAI(prompt: string) {
 }
 
 export async function generateListingInsights(listingsData: any[]) {
-  const apiKey = getEnv('VITE_OPENAI_API_KEY') || getEnv('OPENAI_API_KEY');
+  const apiKey = getEnv("VITE_OPENAI_API_KEY") || getEnv("OPENAI_API_KEY");
   if (!apiKey) {
     throw new Error("OpenAI API key not found. Please set VITE_OPENAI_API_KEY.");
   }
 
   const prompt = `Analyze the following business listings and provide performance predictions and growth insights:
-  ${JSON.stringify(listingsData.map(l => ({ name: l.name, category: l.category, city: l.city, views: l.views })))}
+  ${JSON.stringify(listingsData.map((l) => ({ name: l.name, category: l.category, city: l.city, views: l.views })))}
   
   Return a JSON object with:
   - "score": (number 0-100) overall market potential
@@ -65,7 +65,8 @@ export async function generateListingInsights(listingsData: any[]) {
       messages: [
         {
           role: "system",
-          content: "You are a senior business consultant and market analyst specializing in the African market. Return only JSON.",
+          content:
+            "You are a senior business consultant and market analyst specializing in the African market. Return only JSON.",
         },
         {
           role: "user",

@@ -35,7 +35,7 @@ export function AuthSignUp() {
       setError(signUpError.message);
       setIsLoading(false);
     } else if (data.user) {
-      // In Supabase, usually a trigger handles profile creation, 
+      // In Supabase, usually a trigger handles profile creation,
       // but we can also do it here if needed or just wait for them to confirm email.
       // Assuming profile is handled by trigger or will be created on first dashboard visit.
       alert("Registration successful! Please check your email for confirmation.");

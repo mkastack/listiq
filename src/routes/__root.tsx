@@ -56,14 +56,14 @@ export const Route = createRootRoute({
         rel: "preload",
         as: "script",
         href: "https://js.paystack.co/v1/inline.js",
-      }
+      },
     ],
     scripts: [
       {
         src: "https://js.paystack.co/v1/inline.js",
         async: true,
-      }
-    ]
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

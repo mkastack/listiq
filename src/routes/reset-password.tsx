@@ -10,7 +10,7 @@ function ResetPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const navigate = useNavigate();
 
   // Check if session exists (Supabase automatically logs in the user when they click the reset link)
@@ -25,7 +25,7 @@ function ResetPassword() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setMessage({ type: 'error', text: "Passwords do not match." });
+      setMessage({ type: "error", text: "Passwords do not match." });
       return;
     }
 
@@ -37,11 +37,11 @@ function ResetPassword() {
     });
 
     if (error) {
-      setMessage({ type: 'error', text: error.message });
+      setMessage({ type: "error", text: error.message });
     } else {
-      setMessage({ type: 'success', text: "Password updated successfully! Redirecting..." });
+      setMessage({ type: "success", text: "Password updated successfully! Redirecting..." });
       setTimeout(() => {
-        navigate({ to: "/auth", search: { mode: 'signin' } });
+        navigate({ to: "/auth", search: { mode: "signin" } });
       }, 2000);
     }
     setIsLoading(false);
@@ -62,11 +62,15 @@ function ResetPassword() {
         </div>
 
         {message && (
-          <div className={`p-4 rounded-2xl mb-8 animate-in slide-in-from-top-2 duration-300 flex items-center gap-3 ${
-            message.type === 'success' ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' : 'bg-rose-50 text-rose-700 border border-rose-100'
-          }`}>
+          <div
+            className={`p-4 rounded-2xl mb-8 animate-in slide-in-from-top-2 duration-300 flex items-center gap-3 ${
+              message.type === "success"
+                ? "bg-emerald-50 text-emerald-700 border border-emerald-100"
+                : "bg-rose-50 text-rose-700 border border-rose-100"
+            }`}
+          >
             <span className="material-symbols-outlined text-xl">
-              {message.type === 'success' ? 'check_circle' : 'error'}
+              {message.type === "success" ? "check_circle" : "error"}
             </span>
             <p className="text-sm font-bold">{message.text}</p>
           </div>
@@ -74,10 +78,14 @@ function ResetPassword() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <label className="text-[11px] font-black text-slate-900 uppercase tracking-widest ml-1">New Password</label>
+            <label className="text-[11px] font-black text-slate-900 uppercase tracking-widest ml-1">
+              New Password
+            </label>
             <div className="relative">
-              <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">lock</span>
-              <input 
+              <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                lock
+              </span>
+              <input
                 required
                 type="password"
                 value={password}
@@ -89,10 +97,14 @@ function ResetPassword() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-[11px] font-black text-slate-900 uppercase tracking-widest ml-1">Confirm New Password</label>
+            <label className="text-[11px] font-black text-slate-900 uppercase tracking-widest ml-1">
+              Confirm New Password
+            </label>
             <div className="relative">
-              <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">verified_user</span>
-              <input 
+              <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                verified_user
+              </span>
+              <input
                 required
                 type="password"
                 value={confirmPassword}
@@ -103,7 +115,7 @@ function ResetPassword() {
             </div>
           </div>
 
-          <button 
+          <button
             type="submit"
             disabled={isLoading}
             className="w-full bg-blue-600 text-white py-4 rounded-2xl font-black text-sm hover:bg-blue-700 transition-all active:scale-[0.98] shadow-xl shadow-blue-600/20 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"

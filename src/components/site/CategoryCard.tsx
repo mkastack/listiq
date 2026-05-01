@@ -1,7 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import * as Icons from "lucide-react";
 
-export function CategoryCard({ slug, name, icon, count }: { slug: string; name: string; icon: string | null; count: number }) {
+export function CategoryCard({
+  slug,
+  name,
+  icon,
+  count,
+}: {
+  slug: string;
+  name: string;
+  icon: string | null;
+  count: number;
+}) {
   const Icon = (icon && (Icons as any)[icon]) || Icons.Tag;
   return (
     <Link
@@ -15,7 +25,9 @@ export function CategoryCard({ slug, name, icon, count }: { slug: string; name: 
       </div>
       <div>
         <h3 className="font-display text-sm font-semibold text-foreground">{name}</h3>
-        <p className="mt-0.5 text-xs text-muted-foreground">{count} {count === 1 ? "listing" : "listings"}</p>
+        <p className="mt-0.5 text-xs text-muted-foreground">
+          {count} {count === 1 ? "listing" : "listings"}
+        </p>
       </div>
     </Link>
   );

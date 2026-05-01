@@ -13,14 +13,14 @@ function AdminLayout() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+
   const [notificationCount, setNotificationCount] = useState(0);
-  
+
   const location = useLocation();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      const isAdmin = session?.user?.email === 'admin@listiq.com';
+      const isAdmin = session?.user?.email === "admin@listiq.com";
       setIsAuthenticated(isAdmin);
       if (session && isAdmin) {
         fetchProfile(session.user.id);
@@ -30,8 +30,10 @@ function AdminLayout() {
       }
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      const isAdmin = session?.user?.email === 'admin@listiq.com';
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      const isAdmin = session?.user?.email === "admin@listiq.com";
       setIsAuthenticated(isAdmin);
       if (session && isAdmin) {
         fetchProfile(session.user.id);
@@ -39,13 +41,18 @@ function AdminLayout() {
     });
 
     // Real-time notifications for Admin
-    const notificationsSub = supabase.channel('admin-global-notifications')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'listings' }, () => {
-        setNotificationCount(prev => prev + 1);
+    const notificationsSub = supabase
+      .channel("admin-global-notifications")
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "listings" }, () => {
+        setNotificationCount((prev) => prev + 1);
       })
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'claim_requests' }, () => {
-        setNotificationCount(prev => prev + 1);
-      })
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "claim_requests" },
+        () => {
+          setNotificationCount((prev) => prev + 1);
+        },
+      )
       .subscribe();
 
     return () => {
@@ -55,7 +62,7 @@ function AdminLayout() {
   }, []);
 
   const fetchProfile = async (uid: string) => {
-    const { data } = await supabase.from('profiles').select('*').eq('id', uid).single();
+    const { data } = await supabase.from("profiles").select("*").eq("id", uid).single();
     if (data) setUserProfile(data);
   };
 
@@ -71,7 +78,9 @@ function AdminLayout() {
       <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC]">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-[#2563EB]/20 border-t-[#2563EB] rounded-full animate-spin"></div>
-          <span className="text-[10px] font-bold text-[#64748B] uppercase tracking-widest font-['Manrope']">Authenticating</span>
+          <span className="text-[10px] font-bold text-[#64748B] uppercase tracking-widest font-['Manrope']">
+            Authenticating
+          </span>
         </div>
       </div>
     );
@@ -83,19 +92,25 @@ function AdminLayout() {
 
   return (
     <div className="bg-[#F8FAFC] min-h-screen font-['DM_Sans'] text-[#0F172A]">
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono&display=swap');
         .font-h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; line-height: 32px; font-weight: 700; }
         .font-body-md { font-family: 'Manrope', sans-serif; font-size: 14px; line-height: 20px; }
         .font-label-caps { font-family: 'Manrope', sans-serif; font-size: 11px; line-height: 12px; letter-spacing: 0.05em; font-weight: 600; }
         .admin-badge { background-color: #F43F5E; color: #ffffff; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 11px; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; }
-      ` }} />
+      `,
+        }}
+      />
 
       {/* TopNavBar */}
       <nav className="bg-[#0F172A] border-b border-slate-800 flex flex-col w-full px-6 sticky top-0 z-50 h-24 justify-center">
         <div className="max-w-[1440px] mx-auto w-full flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <Link to="/admin" className="text-xl font-black text-white tracking-tighter">ListIQ</Link>
+            <Link to="/admin" className="text-xl font-black text-white tracking-tighter">
+              ListIQ
+            </Link>
             <div className="hidden md:flex gap-6 items-center pt-2">
               {[
                 { to: "/admin", label: "Overview", exact: true },
@@ -110,7 +125,9 @@ function AdminLayout() {
                   to={link.to}
                   activeOptions={{ exact: link.exact }}
                   className="font-['Plus_Jakarta_Sans'] text-sm tracking-tight transition-colors duration-200 pb-2"
-                  activeProps={{ className: "text-[#2563EB] border-b-2 border-[#2563EB] font-bold" }}
+                  activeProps={{
+                    className: "text-[#2563EB] border-b-2 border-[#2563EB] font-bold",
+                  }}
                   inactiveProps={{ className: "text-slate-400 font-medium hover:text-white" }}
                 >
                   {link.label}
@@ -122,15 +139,15 @@ function AdminLayout() {
           <div className="flex items-center gap-4">
             <div className="relative hidden lg:flex items-center bg-[#1E293B] rounded-lg px-3 py-1.5">
               <span className="material-symbols-outlined text-slate-400 text-lg mr-2">search</span>
-              <input 
+              <input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="bg-transparent border-none text-white text-sm focus:ring-0 w-48 outline-none"
-                placeholder="Search data..." 
-                type="text" 
+                placeholder="Search data..."
+                type="text"
               />
             </div>
-            <button 
+            <button
               onClick={() => setNotificationCount(0)}
               className="text-slate-400 hover:text-white transition-colors relative"
             >
@@ -143,15 +160,21 @@ function AdminLayout() {
             </button>
             <div className="flex items-center gap-3 pl-4 border-l border-slate-800">
               <div className="relative group">
-                <button 
+                <button
                   onClick={() => setShowProfileDropdown(!showProfileDropdown)}
                   className="flex items-center gap-3 focus:outline-none"
                 >
                   <div className="w-8 h-8 rounded-full bg-[#2563EB]/20 flex items-center justify-center border border-[#2563EB]/30 overflow-hidden">
                     {userProfile?.avatar_url ? (
-                      <img src={userProfile.avatar_url} className="w-full h-full object-cover" alt="Profile" />
+                      <img
+                        src={userProfile.avatar_url}
+                        className="w-full h-full object-cover"
+                        alt="Profile"
+                      />
                     ) : (
-                      <span className="text-[#2563EB] text-xs font-bold">{userProfile?.full_name?.charAt(0) || 'A'}</span>
+                      <span className="text-[#2563EB] text-xs font-bold">
+                        {userProfile?.full_name?.charAt(0) || "A"}
+                      </span>
                     )}
                   </div>
                   <span className="admin-badge">Admin</span>
@@ -160,10 +183,12 @@ function AdminLayout() {
                 {showProfileDropdown && (
                   <div className="absolute right-0 top-12 w-48 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden py-1 z-50">
                     <div className="px-4 py-2 border-b border-slate-50">
-                      <p className="text-xs font-bold text-slate-900 truncate">{userProfile?.full_name || 'Administrator'}</p>
+                      <p className="text-xs font-bold text-slate-900 truncate">
+                        {userProfile?.full_name || "Administrator"}
+                      </p>
                       <p className="text-[10px] text-slate-500 truncate">{userProfile?.email}</p>
                     </div>
-                    <button 
+                    <button
                       onClick={handleSignOut}
                       className="w-full flex items-center gap-2 px-4 py-2 text-xs font-bold text-red-600 hover:bg-red-50 transition-colors"
                     >
@@ -183,11 +208,19 @@ function AdminLayout() {
       </main>
 
       <footer className="max-w-[1440px] mx-auto px-8 py-12 border-t border-slate-200 mt-12 flex justify-between items-center">
-        <p className="text-sm text-[#64748B]">© 2024 ListIQ Enterprise Solutions. All rights reserved.</p>
+        <p className="text-sm text-[#64748B]">
+          © 2024 ListIQ Enterprise Solutions. All rights reserved.
+        </p>
         <div className="flex gap-6">
-          <a className="text-sm text-[#64748B] hover:text-[#2563EB] transition-colors" href="#">Docs</a>
-          <a className="text-sm text-[#64748B] hover:text-[#2563EB] transition-colors" href="#">Support</a>
-          <a className="text-sm text-[#64748B] hover:text-[#2563EB] transition-colors" href="#">Status</a>
+          <a className="text-sm text-[#64748B] hover:text-[#2563EB] transition-colors" href="#">
+            Docs
+          </a>
+          <a className="text-sm text-[#64748B] hover:text-[#2563EB] transition-colors" href="#">
+            Support
+          </a>
+          <a className="text-sm text-[#64748B] hover:text-[#2563EB] transition-colors" href="#">
+            Status
+          </a>
         </div>
       </footer>
     </div>

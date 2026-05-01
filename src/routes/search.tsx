@@ -24,7 +24,11 @@ export const Route = createFileRoute("/search")({
   head: () => ({
     meta: [
       { title: "Search businesses — ListIQ" },
-      { name: "description", content: "Find verified businesses across Ghana. Filter by category, city, rating, and more." },
+      {
+        name: "description",
+        content:
+          "Find verified businesses across Ghana. Filter by category, city, rating, and more.",
+      },
     ],
   }),
   component: SearchPage,
@@ -39,7 +43,9 @@ function SearchPage() {
   const [q, setQ] = useState(params.q ?? "");
   const [city, setCity] = useState(params.city ?? "");
 
-  useEffect(() => { fetchCategories().then(setCategories); }, []);
+  useEffect(() => {
+    fetchCategories().then(setCategories);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -49,7 +55,9 @@ function SearchPage() {
       category: params.category,
       verifiedOnly: params.verified,
       sort: params.sort,
-    }).then((d) => setResults(d as any)).finally(() => setLoading(false));
+    })
+      .then((d) => setResults(d as any))
+      .finally(() => setLoading(false));
   }, [params.q, params.city, params.category, params.verified, params.sort]);
 
   const updateParam = (patch: Partial<SearchParams>) => {
@@ -65,17 +73,34 @@ function SearchPage() {
     <SiteShell>
       <section className="border-b border-border bg-surface">
         <div className="mx-auto max-w-7xl px-4 py-8 md:px-6">
-          <form onSubmit={submit} className="flex flex-col gap-2 rounded-2xl border border-border bg-background p-2 md:flex-row md:items-center">
+          <form
+            onSubmit={submit}
+            className="flex flex-col gap-2 rounded-2xl border border-border bg-background p-2 md:flex-row md:items-center"
+          >
             <div className="flex flex-1 items-center gap-2 px-3 py-2">
               <Search className="h-4 w-4 text-muted-foreground" />
-              <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="What are you looking for?" className="w-full bg-transparent text-sm focus:outline-none" />
+              <input
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="What are you looking for?"
+                className="w-full bg-transparent text-sm focus:outline-none"
+              />
             </div>
             <div className="hidden h-8 w-px bg-border md:block" />
             <div className="flex flex-1 items-center gap-2 px-3 py-2">
               <MapPin className="h-4 w-4 text-muted-foreground" />
-              <input value={city} onChange={(e) => setCity(e.target.value)} placeholder="City or region" className="w-full bg-transparent text-sm focus:outline-none" />
+              <input
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder="City or region"
+                className="w-full bg-transparent text-sm focus:outline-none"
+              />
             </div>
-            <button type="submit" className="rounded-xl px-5 py-2.5 text-sm font-semibold text-primary-foreground" style={{ background: "var(--gradient-primary)" }}>
+            <button
+              type="submit"
+              className="rounded-xl px-5 py-2.5 text-sm font-semibold text-primary-foreground"
+              style={{ background: "var(--gradient-primary)" }}
+            >
               Search
             </button>
           </form>
@@ -85,10 +110,7 @@ function SearchPage() {
       <section className="mx-auto max-w-7xl px-4 py-10 md:px-6">
         <div className="grid gap-8 md:grid-cols-[260px_1fr]">
           <aside className="space-y-6">
-            <FilterPanel
-              title="Category"
-              icon={<SlidersHorizontal className="h-3.5 w-3.5" />}
-            >
+            <FilterPanel title="Category" icon={<SlidersHorizontal className="h-3.5 w-3.5" />}>
               <button
                 onClick={() => updateParam({ category: undefined })}
                 className={`block w-full rounded-lg px-3 py-2 text-left text-sm ${!params.category ? "bg-primary/10 text-primary font-semibold" : "text-muted-foreground hover:bg-accent"}`}
@@ -101,7 +123,8 @@ function SearchPage() {
                   onClick={() => updateParam({ category: c.slug })}
                   className={`block w-full rounded-lg px-3 py-2 text-left text-sm ${params.category === c.slug ? "bg-primary/10 text-primary font-semibold" : "text-muted-foreground hover:bg-accent"}`}
                 >
-                  {c.name} <span className="text-xs text-muted-foreground/70">({c.listing_count})</span>
+                  {c.name}{" "}
+                  <span className="text-xs text-muted-foreground/70">({c.listing_count})</span>
                 </button>
               ))}
             </FilterPanel>
@@ -139,8 +162,15 @@ function SearchPage() {
           <div>
             <div className="mb-6 flex items-center justify-between">
               <p className="text-sm text-muted-foreground">
-                {loading ? "Searching…" : `${results.length} result${results.length === 1 ? "" : "s"}`}
-                {params.q && <> for <span className="font-semibold text-foreground">"{params.q}"</span></>}
+                {loading
+                  ? "Searching…"
+                  : `${results.length} result${results.length === 1 ? "" : "s"}`}
+                {params.q && (
+                  <>
+                    {" "}
+                    for <span className="font-semibold text-foreground">"{params.q}"</span>
+                  </>
+                )}
               </p>
             </div>
 
@@ -159,7 +189,9 @@ function SearchPage() {
               </div>
             ) : (
               <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                {results.map((l) => <ListingCard key={l.slug} l={l} />)}
+                {results.map((l) => (
+                  <ListingCard key={l.slug} l={l} />
+                ))}
               </div>
             )}
           </div>
@@ -169,7 +201,15 @@ function SearchPage() {
   );
 }
 
-function FilterPanel({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
+function FilterPanel({
+  title,
+  icon,
+  children,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-2xl border border-border bg-card p-3">
       <div className="mb-2 flex items-center gap-2 px-2 pt-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">

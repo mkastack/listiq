@@ -24,7 +24,9 @@ export function SiteHeader() {
       if (session?.user) fetchProfile(session.user.id);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       if (session?.user) fetchProfile(session.user.id);
       else setProfile(null);
@@ -32,18 +34,23 @@ export function SiteHeader() {
 
     // Real-time profile sync
     let profileSub: any;
-    
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
-        profileSub = supabase.channel(`profile-sync-${session.user.id}`)
-          .on('postgres_changes', { 
-            event: 'UPDATE', 
-            schema: 'public', 
-            table: 'profiles',
-            filter: `id=eq.${session.user.id}`
-          }, (payload) => {
-            setProfile(payload.new);
-          })
+        profileSub = supabase
+          .channel(`profile-sync-${session.user.id}`)
+          .on(
+            "postgres_changes",
+            {
+              event: "UPDATE",
+              schema: "public",
+              table: "profiles",
+              filter: `id=eq.${session.user.id}`,
+            },
+            (payload) => {
+              setProfile(payload.new);
+            },
+          )
           .subscribe();
       }
     });
@@ -55,7 +62,11 @@ export function SiteHeader() {
   }, []);
 
   const fetchProfile = async (uid: string) => {
-    const { data } = await supabase.from('profiles').select('full_name, avatar_url').eq('id', uid).single();
+    const { data } = await supabase
+      .from("profiles")
+      .select("full_name, avatar_url")
+      .eq("id", uid)
+      .single();
     if (data) setProfile(data);
   };
 
@@ -74,15 +85,18 @@ export function SiteHeader() {
     setShowDropdown(false);
   };
 
-  const rawName = profile?.full_name || session?.user?.user_metadata?.full_name || 'User';
-  const firstName = rawName.split(' ')[0];
+  const rawName = profile?.full_name || session?.user?.user_metadata?.full_name || "User";
+  const firstName = rawName.split(" ")[0];
   const initials = rawName.charAt(0).toUpperCase();
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-surface/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-6">
         <Link to="/" className="flex items-center gap-2 group">
-          <span className="grid h-9 w-9 place-items-center rounded-xl text-primary-foreground" style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-glow)" }}>
+          <span
+            className="grid h-9 w-9 place-items-center rounded-xl text-primary-foreground"
+            style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-glow)" }}
+          >
             <MapPin className="h-4 w-4" />
           </span>
           <span className="font-display text-lg font-extrabold tracking-tight text-foreground">
@@ -121,8 +135,8 @@ export function SiteHeader() {
                 <Sparkles className="h-3 w-3 fill-current" />
                 Manage {firstName}
               </Link>
-              
-              <button 
+
+              <button
                 onClick={() => setShowDropdown(!showDropdown)}
                 className="flex items-center gap-2 rounded-full border border-border p-0.5 hover:border-primary transition-all active:scale-95"
               >
@@ -138,9 +152,15 @@ export function SiteHeader() {
               {showDropdown && (
                 <div className="absolute right-0 top-12 w-64 bg-white rounded-2xl shadow-xl border border-border overflow-hidden py-1 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="px-5 py-4 border-b border-border/50 bg-slate-50/50">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Signed in as</p>
-                    <p className="text-[13px] font-bold text-slate-900 truncate">{profile?.full_name || session.user.email}</p>
-                    <p className="text-[10px] text-slate-500 truncate mt-0.5">{session.user.email}</p>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                      Signed in as
+                    </p>
+                    <p className="text-[13px] font-bold text-slate-900 truncate">
+                      {profile?.full_name || session.user.email}
+                    </p>
+                    <p className="text-[10px] text-slate-500 truncate mt-0.5">
+                      {session.user.email}
+                    </p>
                   </div>
                   <div className="p-1">
                     <Link
@@ -201,7 +221,9 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <div className={cn("md:hidden border-t border-border/60 bg-surface", open ? "block" : "hidden")}>
+      <div
+        className={cn("md:hidden border-t border-border/60 bg-surface", open ? "block" : "hidden")}
+      >
         <div className="flex flex-col px-4 py-3">
           {NAV.map((n) => (
             <Link
@@ -214,15 +236,27 @@ export function SiteHeader() {
             </Link>
           ))}
           {!session ? (
-            <Link to="/auth" search={{ mode: "signin" }} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-accent">
+            <Link
+              to="/auth"
+              search={{ mode: "signin" }}
+              onClick={() => setOpen(false)}
+              className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-accent"
+            >
               Sign in
             </Link>
           ) : (
             <>
-              <Link to="/dashboard" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-accent">
+              <Link
+                to="/dashboard"
+                onClick={() => setOpen(false)}
+                className="rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-accent"
+              >
                 Manage Dashboard
               </Link>
-              <button onClick={handleSignOut} className="text-left rounded-lg px-3 py-2 text-sm font-medium text-red-500 hover:bg-red-50">
+              <button
+                onClick={handleSignOut}
+                className="text-left rounded-lg px-3 py-2 text-sm font-medium text-red-500 hover:bg-red-50"
+              >
                 Sign out
               </button>
             </>
