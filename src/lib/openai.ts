@@ -1,5 +1,7 @@
+import { getEnv } from "./utils";
+
 export async function generateArticleAI(prompt: string) {
-  const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+  const apiKey = getEnv('VITE_OPENAI_API_KEY') || getEnv('OPENAI_API_KEY');
   if (!apiKey) {
     throw new Error("OpenAI API key not found in environment variables.");
   }
@@ -38,7 +40,7 @@ export async function generateArticleAI(prompt: string) {
 }
 
 export async function generateListingInsights(listingsData: any[]) {
-  const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+  const apiKey = getEnv('VITE_OPENAI_API_KEY') || getEnv('OPENAI_API_KEY');
   if (!apiKey) {
     throw new Error("OpenAI API key not found. Please set VITE_OPENAI_API_KEY.");
   }
