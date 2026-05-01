@@ -42,17 +42,6 @@ export function AdminSignIn({ onSignIn }: AdminSignInProps) {
       return;
     }
 
-    // Admin Bypass for specific user credentials
-    if (email === "admin@listiq.com" && password === "iotaiq@26") {
-      if (isMFAActive) {
-        setShowMFA(true);
-        setIsLoading(false);
-      } else {
-        onSignIn();
-      }
-      return;
-    }
-
     const { data, error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,

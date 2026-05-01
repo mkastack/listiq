@@ -19,23 +19,58 @@ function AdminLayout() {
   const location = useLocation();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      const isAdmin = session?.user?.email === "admin@listiq.com";
-      setIsAuthenticated(isAdmin);
-      if (session && isAdmin) {
-        fetchProfile(session.user.id);
-      } else if (session && !isAdmin) {
-        // If logged in but not admin, sign out
-        supabase.auth.signOut();
+    const verifyAdminSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session?.user || session.user.email !== "admin@listiq.com") {
+        if (session) {
+          await supabase.auth.signOut();
+        }
+        setIsAuthenticated(false);
+        return;
       }
-    });
+
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id)
+        .eq("role", "admin")
+        .limit(1);
+
+      const hasAdminRole = Array.isArray(roles) && roles.length > 0;
+
+      if (!hasAdminRole) {
+        await supabase.auth.signOut();
+        setIsAuthenticated(false);
+        return;
+      }
+
+      setIsAuthenticated(true);
+      fetchProfile(session.user.id);
+    };
+
+    verifyAdminSession();
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      const isAdmin = session?.user?.email === "admin@listiq.com";
-      setIsAuthenticated(isAdmin);
-      if (session && isAdmin) {
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      if (!session?.user || session.user.email !== "admin@listiq.com") {
+        setIsAuthenticated(false);
+        return;
+      }
+
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id)
+        .eq("role", "admin")
+        .limit(1);
+
+      const hasAdminRole = Array.isArray(roles) && roles.length > 0;
+      setIsAuthenticated(hasAdminRole);
+      if (hasAdminRole) {
         fetchProfile(session.user.id);
       }
     });
