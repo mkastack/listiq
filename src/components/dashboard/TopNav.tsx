@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Link } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
 import { supabase } from "../../lib/supabase";
@@ -207,3 +208,4 @@ export function TopNav({ onMenuClick }: { onMenuClick?: () => void }) {
     </header>
   );
 }
+

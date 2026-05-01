@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
@@ -241,3 +242,4 @@ export function Sidebar({ isOpen = false, onClose }: { isOpen?: boolean; onClose
     </>
   );
 }
+

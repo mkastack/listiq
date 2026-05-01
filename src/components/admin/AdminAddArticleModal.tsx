@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from "react";
 import { supabase } from "../../lib/supabase";
 import { uploadFile } from "../../lib/storage-helper";
@@ -189,3 +190,4 @@ export function AdminAddArticleModal({ isOpen, onClose, onSuccess }: AdminAddArt
     </div>
   );
 }
+

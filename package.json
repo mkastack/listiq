@@ -1,10 +1,9 @@
 {
-  "name": "listiq",
+  "name": "tanstack_start_ts",
+  "packageManager": "npm@10.9.2",
   "private": true,
+  "sideEffects": false,
   "type": "module",
-  "engines": {
-    "node": ">=20.0.0"
-  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
