@@ -11,7 +11,7 @@ export default {
     return handler(request, {
       context: {
         cloudflare: { env, ctx },
-      },
+      } as any,
     });
   },
 };
