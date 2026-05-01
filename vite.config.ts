@@ -1,38 +1,35 @@
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
-import fs from 'fs';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import viteTsconfigPaths from 'vite-tsconfig-paths';
+import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 
-// Pre-create the server entry point to satisfy Cloudflare plugin validation
-// This is necessary because the plugin checks for the file's existence 
-// before the build process actually generates it.
-const serverDir = path.resolve(process.cwd(), 'dist/server');
-console.log('[@listiq] Ensuring server directory exists:', serverDir);
-if (!fs.existsSync(serverDir)) {
-  fs.mkdirSync(serverDir, { recursive: true });
-}
-const serverEntry = path.join(serverDir, 'index.js');
-console.log('[@listiq] Ensuring server entry exists:', serverEntry);
-if (!fs.existsSync(serverEntry)) {
-  fs.writeFileSync(serverEntry, 'export default { fetch: () => {} };');
-}
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  cloudflare: {
-    viteEnvironment: { name: "ssr" }
+  plugins: [
+    TanStackRouterVite(),
+    react(),
+    viteTsconfigPaths(),
+  ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   },
-  vite: {
-    build: {
-      chunkSizeWarningLimit: 1000,
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('@supabase')) return 'vendor-supabase';
-              if (id.includes('@tanstack')) return 'vendor-tanstack';
-              if (id.includes('react/') || id.includes('react-dom/')) return 'vendor-react';
-              if (id.includes('lucide')) return 'vendor-icons';
-              return 'vendor-core'; // Renamed to avoid overlap
-            }
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('@supabase')) return 'vendor-supabase';
+            if (id.includes('@tanstack')) return 'vendor-tanstack';
+            if (id.includes('react/') || id.includes('react-dom/')) return 'vendor-react';
+            if (id.includes('lucide')) return 'vendor-icons';
+            return 'vendor-core';
           }
         }
       }
