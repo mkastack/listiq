@@ -72,29 +72,43 @@ function AdminListings() {
 
   useEffect(() => {
     fetchListings();
+  }, [searchQuery, statusFilter]);
 
+  useEffect(() => {
     const channel = supabase
       .channel("admin-listings-all")
-      .on("postgres_changes", { event: "*", schema: "public", table: "listings" }, fetchListings)
+      .on("postgres_changes", { event: "*", schema: "public", table: "listings" }, () => {
+        fetchListings();
+      })
       .subscribe();
 
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [searchQuery, statusFilter]);
+  }, []);
 
   const handleUpdateStatus = async (id: string, status: string) => {
     const { error } = await supabase.from("listings").update({ status }).eq("id", id);
 
-    if (error) alert(error.message);
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    fetchListings();
   };
 
   const handleDelete = async (id: string) => {
-    if (window.confirm("Are you sure you want to delete this listing?")) {
-      const { error } = await supabase.from("listings").delete().eq("id", id);
+    if (!window.confirm("Are you sure you want to delete this listing?")) return;
 
-      if (error) alert(error.message);
+    const { error } = await supabase.from("listings").delete().eq("id", id);
+
+    if (error) {
+      alert(error.message);
+      return;
     }
+
+    fetchListings();
   };
 
   return (

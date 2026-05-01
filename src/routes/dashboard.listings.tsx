@@ -33,15 +33,46 @@ function MyListings() {
     fetchListings();
   }, []);
 
+  useEffect(() => {
+    let channel: any;
+
+    const setupSubscription = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (!session?.user) return;
+
+      channel = supabase
+        .channel(`dashboard-listings-${session.user.id}`)
+        .on(
+          "postgres_changes",
+          { event: "*", schema: "public", table: "listings", filter: `owner_id=eq.${session.user.id}` },
+          () => {
+            fetchListings();
+          },
+        )
+        .subscribe();
+    };
+
+    setupSubscription();
+
+    return () => {
+      if (channel) supabase.removeChannel(channel);
+    };
+  }, []);
+
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this listing?")) return;
 
     const { error } = await supabase.from("listings").delete().eq("id", id);
 
-    if (!error) {
-      setListings(listings.filter((l) => l.id !== id));
-      setActiveDropdown(null);
+    if (error) {
+      alert(error.message);
+      return;
     }
+
+    setActiveDropdown(null);
+    fetchListings();
   };
 
   // Close dropdown when clicking outside
