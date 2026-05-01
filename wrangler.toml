@@ -2,7 +2,7 @@ name = "listiq"
 compatibility_date = "2025-09-24"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "dist/client"
-main = "dist/server/index.js"
+# main = "dist/server/index.js"
 
 [observability]
 enabled = true

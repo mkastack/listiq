@@ -6,10 +6,12 @@ import path from 'path';
 // This is necessary because the plugin checks for the file's existence 
 // before the build process actually generates it.
 const serverDir = path.resolve(process.cwd(), 'dist/server');
+console.log('[@listiq] Ensuring server directory exists:', serverDir);
 if (!fs.existsSync(serverDir)) {
   fs.mkdirSync(serverDir, { recursive: true });
 }
 const serverEntry = path.join(serverDir, 'index.js');
+console.log('[@listiq] Ensuring server entry exists:', serverEntry);
 if (!fs.existsSync(serverEntry)) {
   fs.writeFileSync(serverEntry, '');
 }
